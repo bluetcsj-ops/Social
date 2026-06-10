@@ -1,0 +1,551 @@
+window.SOCIAL_DASHBOARD_DRAFTS = [
+  [
+    {
+      "platform": "x",
+      "category": "team_prediction",
+      "team": "Brazil",
+      "text": "Ronaldo's 2002 redemption arc still makes Brazil predictions feel different. My way-too-early Brazil 2026 take: if the vibe clicks, they can make noise. #WorldCup2026 #Football",
+      "image": "/social/images/brazil-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "team_prediction",
+      "team": "Argentina",
+      "text": "Argentina bracket talk always starts with a clip in my head. That Messi and Di Maria 2022 final link-up still feels unreal. How far are we taking them in 2026? #WorldCup2026 #Football",
+      "image": "/social/images/argentina-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "team_prediction",
+      "team": "France",
+      "text": "Made a France prediction card and immediately started overthinking it. When a team has recent memories of Mbappe deciding games, every bracket looks dangerous. This is how the World Cup gets me every time. #WorldCup2026 #Football",
+      "image": "/social/images/france-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "team_prediction",
+      "team": "England",
+      "text": "England fans, be real: what is the 2026 ceiling? England's recent semi-final and final near-misses make every prediction feel loaded. I can talk myself into a run so fast. #WorldCup2026 #Football",
+      "image": "/social/images/england-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "team_prediction",
+      "team": "Spain",
+      "text": "Iniesta's 2010 final goal is the kind of memory that makes Spain predictions feel romantic. My way-too-early Spain 2026 take: if the vibe clicks, they can make noise. #WorldCup2026 #Football",
+      "image": "/social/images/spain-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "team_prediction",
+      "team": "Portugal",
+      "text": "Portugal bracket talk always starts with a clip in my head. Portugal always feels one Bruno pass or one Leao run away from a highlight clip. How far are we taking them in 2026? #WorldCup2026 #Football",
+      "image": "/social/images/portugal-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "team_prediction",
+      "team": "Germany",
+      "text": "Made a Germany prediction card and immediately started overthinking it. Germany's 2014 title run is the reminder to never write them off too early. This is how the World Cup gets me every time. #WorldCup2026 #Football",
+      "image": "/social/images/germany-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "team_prediction",
+      "team": "USA",
+      "text": "USA fans, be real: what is the 2026 ceiling? The USA has enough home-crowd energy in 2026 to make every group match feel bigger. I can talk myself into a run so fast. #WorldCup2026 #Football",
+      "image": "/social/images/usa-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "team_prediction",
+      "team": "Mexico",
+      "text": "Mexico's World Cup story always has noise, pressure, and one match that feels massive. My way-too-early Mexico 2026 take: if the vibe clicks, they can make noise. #WorldCup2026 #Football",
+      "image": "/social/images/mexico-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "team_prediction",
+      "team": "Japan",
+      "text": "Japan bracket talk always starts with a clip in my head. Japan beating Germany and Spain in 2022 is exactly why nobody should treat them lightly. How far are we taking them in 2026? #WorldCup2026 #Football",
+      "image": "/social/images/japan-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "schedule",
+      "team": "Brazil",
+      "text": "That 2002 front line is still the World Cup memory I compare every Brazil attack to. So yeah, the Brazil group-stage schedule is going straight into my calendar. #WorldCup2026",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "schedule",
+      "team": "Argentina",
+      "text": "After that 2022 final, Argentina have main-character energy in every bracket chat. That is why the Argentina group path feels spicy from match one. #WorldCup2026",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "schedule",
+      "team": "USA",
+      "text": "I keep checking possible USA kickoff times. Donovan's 2010 stoppage-time goal is still the USA World Cup memory that gives me chills. Timezone pain is part of the World Cup package. #WorldCup2026",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "schedule",
+      "team": "Mexico",
+      "text": "Mexico group-stage watch plan: clear the calendar, then remember mexico beating Germany in 2018 is still the kind of memory that makes dark-horse talk fun. #WorldCup2026",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "schedule",
+      "team": "England",
+      "text": "If England start hot in the group, I am instantly changing my bracket. England always has that mix of huge talent and tournament tension. #WorldCup2026",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "poll",
+      "text": "Brazil 2002, Spain 2010, Germany 2014, Argentina 2022: which champion style feels most likely to work in 2026? #WorldCup2026 #Football",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "poll",
+      "text": "Who is your early World Cup 2026 dark horse? Japan's 2022 run is still the blueprint for me. #WorldCup2026 #Football",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "poll",
+      "text": "Which group would be the most fun: pure chaos, one giant favorite, or four teams with Mexico-vs-Germany-2018 energy? #WorldCup2026 #Football",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "poll",
+      "text": "Early Golden Boot pick? Mbappe's 2022 final still makes me afraid to pick against him. #WorldCup2026 #Football",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "poll",
+      "text": "Who has the better 2026 setup right now: France depth, Brazil flair, Argentina control, or Spain tempo? #WorldCup2026 #Football",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "poll",
+      "text": "Most annoying team to face in a World Cup: elite attack, locked-in defense, or a fearless underdog like Japan in 2022? #WorldCup2026 #Football",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "poll",
+      "text": "If one host team makes a big run in 2026, is it USA home energy, Mexico tournament noise, or Canada surprise factor? #WorldCup2026 #Football",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "poll",
+      "text": "Which 2026 final has the best storyline: Argentina aura, Mbappe's France, Brazil chasing magic, or England stress levels? #WorldCup2026 #Football",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "product_light",
+      "text": "Got excited for World Cup 2026 and started building a small fan hub in my spare time. Mostly schedules, team pages, predictions, and little games for matchday brain. #WorldCup2026",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "product_light",
+      "text": "Trying to make following the World Cup a little more fun: localized schedules, team guides, prediction cards, and fan games. Keeping it casual. #WorldCup2026",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "product_light",
+      "text": "I built a tiny World Cup 2026 hub because I wanted one place for fixtures, teams, and prediction messing around. #WorldCup2026",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "product_light",
+      "text": "World Cup planning mode has started way too early for me, so I made a fan hub to track teams and predictions without making it feel like homework. #WorldCup2026",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "product_light",
+      "text": "Working on a World Cup 2026 fan site for people who love brackets, fixtures, and arguing about dark horses before the draw even behaves. #WorldCup2026",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "product_light",
+      "text": "Spent the weekend polishing a little World Cup 2026 fan hub. The goal is simple: schedules, team pages, predictions, and fun matchday stuff. #WorldCup2026",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "x",
+      "category": "product_light",
+      "text": "I wanted a cleaner way to follow World Cup 2026 in local time, so I started building one. Still fan-made, still very much powered by tournament excitement. #WorldCup2026",
+      "url": "https://worldcup.bluet.cc"
+    }
+  ],
+  [
+    {
+      "platform": "facebook",
+      "category": "team_prediction",
+      "team": "Brazil",
+      "text": "I made a Brazil World Cup 2026 prediction card and now I am way too invested. That 2002 front line is still the World Cup memory I compare every Brazil attack to.\n\nMy question is simple: are they built for those ugly knockout matches, or just the fun open games? Early call: Brazil. What are you changing?",
+      "image": "/social/images/brazil-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "facebook",
+      "category": "team_prediction",
+      "team": "Argentina",
+      "text": "I made an Argentina World Cup 2026 prediction card and now I am way too invested. After that 2022 final, Argentina have main-character energy in every bracket chat.\n\nMy question is simple: are they built for those ugly knockout matches, or just the fun open games? Early call: Argentina. What are you changing?",
+      "image": "/social/images/argentina-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "facebook",
+      "category": "team_prediction",
+      "team": "France",
+      "text": "I made a France World Cup 2026 prediction card and now I am way too invested. Mbappe in the 2022 final is still one of the wildest individual World Cup performances.\n\nMy question is simple: are they built for those ugly knockout matches, or just the fun open games? Early call: France. What are you changing?",
+      "image": "/social/images/france-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "facebook",
+      "category": "team_prediction",
+      "team": "England",
+      "text": "I made an England World Cup 2026 prediction card and now I am way too invested. Kane's World Cup goals and England's 2018 run still hang over the next prediction.\n\nMy question is simple: are they built for those ugly knockout matches, or just the fun open games? Early call: England. What are you changing?",
+      "image": "/social/images/england-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "facebook",
+      "category": "team_prediction",
+      "team": "Spain",
+      "text": "I made a Spain World Cup 2026 prediction card and now I am way too invested. The 2010 possession machine still shapes how I think about Spain in knockout games.\n\nMy question is simple: are they built for those ugly knockout matches, or just the fun open games? Early call: Spain. What are you changing?",
+      "image": "/social/images/spain-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "facebook",
+      "category": "team_prediction",
+      "team": "Portugal",
+      "text": "I made a Portugal World Cup 2026 prediction card and now I am way too invested. Ronaldo has given Portugal so many tournament moments that they never feel ordinary.\n\nMy question is simple: are they built for those ugly knockout matches, or just the fun open games? Early call: Portugal. What are you changing?",
+      "image": "/social/images/portugal-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "facebook",
+      "category": "team_prediction",
+      "team": "Germany",
+      "text": "I made a Germany World Cup 2026 prediction card and now I am way too invested. That 7-1 in 2014 still pops up anytime Germany enter a knockout conversation.\n\nMy question is simple: are they built for those ugly knockout matches, or just the fun open games? Early call: Germany. What are you changing?",
+      "image": "/social/images/germany-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "facebook",
+      "category": "team_prediction",
+      "team": "USA",
+      "text": "I made a USA World Cup 2026 prediction card and now I am way too invested. Pulisic's 2022 goal against Iran showed how tense and emotional this team can make a World Cup.\n\nMy question is simple: are they built for those ugly knockout matches, or just the fun open games? Early call: USA dark-horse run. What are you changing?",
+      "image": "/social/images/usa-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "facebook",
+      "category": "team_prediction",
+      "team": "Mexico",
+      "text": "I made a Mexico World Cup 2026 prediction card and now I am way too invested. Ochoa turning into a World Cup wall is basically a tournament tradition now.\n\nMy question is simple: are they built for those ugly knockout matches, or just the fun open games? Early call: Mexico quarter-final run. What are you changing?",
+      "image": "/social/images/mexico-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "facebook",
+      "category": "team_prediction",
+      "team": "Japan",
+      "text": "I made a Japan World Cup 2026 prediction card and now I am way too invested. Japan's 2022 comeback energy made them one of the easiest teams to root for.\n\nMy question is simple: are they built for those ugly knockout matches, or just the fun open games? Early call: Japan dark horse. What are you changing?",
+      "image": "/social/images/japan-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "facebook",
+      "category": "schedule",
+      "team": "Brazil",
+      "text": "Has anyone started planning around the Brazil group-stage schedule yet? Neymar dragging Brazil through big tournament moments is hard to forget.\n\nI like having fixtures, local time, and team notes in one place before the tournament starts. Which group match are you circling first?",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "facebook",
+      "category": "schedule",
+      "team": "Argentina",
+      "text": "Has anyone started planning around the Argentina group-stage schedule yet? Messi's 2022 run changed the whole feeling around Argentina in knockout games.\n\nI like having fixtures, local time, and team notes in one place before the tournament starts. Which group match are you circling first?",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "facebook",
+      "category": "schedule",
+      "team": "USA",
+      "text": "Has anyone started planning around the USA group-stage schedule yet? The USA has enough home-crowd energy in 2026 to make every group match feel bigger.\n\nI like having fixtures, local time, and team notes in one place before the tournament starts. Which group match are you circling first?",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "facebook",
+      "category": "schedule",
+      "team": "Mexico",
+      "text": "Has anyone started planning around the Mexico group-stage schedule yet? Mexico's World Cup story always has noise, pressure, and one match that feels massive.\n\nI like having fixtures, local time, and team notes in one place before the tournament starts. Which group match are you circling first?",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "facebook",
+      "category": "schedule",
+      "team": "England",
+      "text": "Has anyone started planning around the England group-stage schedule yet? England's recent semi-final and final near-misses make every prediction feel loaded.\n\nI like having fixtures, local time, and team notes in one place before the tournament starts. Which group match are you circling first?",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "facebook",
+      "category": "product_light",
+      "text": "Got excited for World Cup 2026 and started building a small fan hub in my spare time. Mostly schedules, team pages, predictions, and little games for matchday brain.\n\nI am keeping it fan-focused: schedules, team pages, predictions, and simple games rather than anything too serious. Feedback from football people would genuinely help.",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "facebook",
+      "category": "product_light",
+      "text": "Trying to make following the World Cup a little more fun: localized schedules, team guides, prediction cards, and fan games. Keeping it casual.\n\nI am keeping it fan-focused: schedules, team pages, predictions, and simple games rather than anything too serious. Feedback from football people would genuinely help.",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "facebook",
+      "category": "product_light",
+      "text": "I built a tiny World Cup 2026 hub because I wanted one place for fixtures, teams, and prediction messing around.\n\nI am keeping it fan-focused: schedules, team pages, predictions, and simple games rather than anything too serious. Feedback from football people would genuinely help.",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "facebook",
+      "category": "product_light",
+      "text": "World Cup planning mode has started way too early for me, so I made a fan hub to track teams and predictions without making it feel like homework.\n\nI am keeping it fan-focused: schedules, team pages, predictions, and simple games rather than anything too serious. Feedback from football people would genuinely help.",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "facebook",
+      "category": "product_light",
+      "text": "Working on a World Cup 2026 fan site for people who love brackets, fixtures, and arguing about dark horses before the draw even behaves.\n\nI am keeping it fan-focused: schedules, team pages, predictions, and simple games rather than anything too serious. Feedback from football people would genuinely help.",
+      "url": "https://worldcup.bluet.cc"
+    }
+  ],
+  [
+    {
+      "platform": "discord",
+      "category": "team_prediction",
+      "team": "Brazil",
+      "text": "Brazil prediction thread idea: Neymar dragging Brazil through big tournament moments is hard to forget. My gut says: Fast wingers, tournament swagger, and enough midfield control to go deep. Card is here if anyone wants to argue the path: https://worldcup.bluet.cc",
+      "image": "/social/images/brazil-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "team_prediction",
+      "team": "Argentina",
+      "text": "Argentina prediction thread idea: Messi's 2022 run changed the whole feeling around Argentina in knockout games. My gut says: Still feels built for knockout chaos if the midfield rhythm clicks. Card is here if anyone wants to argue the path: https://worldcup.bluet.cc",
+      "image": "/social/images/argentina-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "team_prediction",
+      "team": "France",
+      "text": "France prediction thread idea: France's 2018 pace and 2022 resilience make them feel built for tournament football. My gut says: Scary depth, transition speed, and match-winners everywhere. Card is here if anyone wants to argue the path: https://worldcup.bluet.cc",
+      "image": "/social/images/france-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "team_prediction",
+      "team": "England",
+      "text": "England prediction thread idea: England always has that mix of huge talent and tournament tension. My gut says: If the attack stays brave, this squad has a real path. Card is here if anyone wants to argue the path: https://worldcup.bluet.cc",
+      "image": "/social/images/england-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "team_prediction",
+      "team": "Spain",
+      "text": "Spain prediction thread idea: Spain's 2010 team is still the cleanest example of control winning a World Cup. My gut says: Possession with bite: young legs, sharp passing, big upside. Card is here if anyone wants to argue the path: https://worldcup.bluet.cc",
+      "image": "/social/images/spain-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "team_prediction",
+      "team": "Portugal",
+      "text": "Portugal prediction thread idea: Ronaldo's 2018 hat trick against Spain is still peak World Cup drama. My gut says: A balanced squad with enough creators to punish any open game. Card is here if anyone wants to argue the path: https://worldcup.bluet.cc",
+      "image": "/social/images/portugal-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "team_prediction",
+      "team": "Germany",
+      "text": "Germany prediction thread idea: Germany in 2014 is still the reference point for a team peaking at the perfect time. My gut says: Never ignore Germany when a tournament bracket starts getting weird. Card is here if anyone wants to argue the path: https://worldcup.bluet.cc",
+      "image": "/social/images/germany-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "team_prediction",
+      "team": "USA",
+      "text": "USA prediction thread idea: Donovan's 2010 stoppage-time goal is still the USA World Cup memory that gives me chills. My gut says: Home crowd energy plus pace could make this a noisy bracket. Card is here if anyone wants to argue the path: https://worldcup.bluet.cc",
+      "image": "/social/images/usa-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "team_prediction",
+      "team": "Mexico",
+      "text": "Mexico prediction thread idea: Mexico beating Germany in 2018 is still the kind of memory that makes dark-horse talk fun. My gut says: Home-region energy and knockout grit make this one fun to track. Card is here if anyone wants to argue the path: https://worldcup.bluet.cc",
+      "image": "/social/images/mexico-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "team_prediction",
+      "team": "Japan",
+      "text": "Japan prediction thread idea: That 2022 group-stage run gave Japan a proper dark-horse identity. My gut says: Organized, technical, fearless against bigger names. Card is here if anyone wants to argue the path: https://worldcup.bluet.cc",
+      "image": "/social/images/japan-prediction.png",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "schedule",
+      "team": "Brazil",
+      "text": "Brazil group-stage schedule is one I want to track early. Ronaldo's 2002 redemption arc still makes Brazil predictions feel different. Which match feels like the swing game?",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "schedule",
+      "team": "Argentina",
+      "text": "Argentina group-stage schedule is one I want to track early. That Messi and Di Maria 2022 final link-up still feels unreal. Which match feels like the swing game?",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "schedule",
+      "team": "USA",
+      "text": "USA group-stage schedule is one I want to track early. Pulisic's 2022 goal against Iran showed how tense and emotional this team can make a World Cup. Which match feels like the swing game?",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "schedule",
+      "team": "Mexico",
+      "text": "Mexico group-stage schedule is one I want to track early. Ochoa turning into a World Cup wall is basically a tournament tradition now. Which match feels like the swing game?",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "schedule",
+      "team": "England",
+      "text": "England group-stage schedule is one I want to track early. Kane's World Cup goals and England's 2018 run still hang over the next prediction. Which match feels like the swing game?",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "poll",
+      "text": "Brazil 2002, Spain 2010, Germany 2014, Argentina 2022: which champion style feels most likely to work in 2026?",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "poll",
+      "text": "Who is your early World Cup 2026 dark horse? Japan's 2022 run is still the blueprint for me.",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "poll",
+      "text": "Which group would be the most fun: pure chaos, one giant favorite, or four teams with Mexico-vs-Germany-2018 energy?",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "poll",
+      "text": "Early Golden Boot pick? Mbappe's 2022 final still makes me afraid to pick against him.",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "poll",
+      "text": "Who has the better 2026 setup right now: France depth, Brazil flair, Argentina control, or Spain tempo?",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "poll",
+      "text": "Most annoying team to face in a World Cup: elite attack, locked-in defense, or a fearless underdog like Japan in 2022?",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "poll",
+      "text": "If one host team makes a big run in 2026, is it USA home energy, Mexico tournament noise, or Canada surprise factor?",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "poll",
+      "text": "Which 2026 final has the best storyline: Argentina aura, Mbappe's France, Brazil chasing magic, or England stress levels?",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "product_light",
+      "text": "Got excited for World Cup 2026 and started building a small fan hub in my spare time. Mostly schedules, team pages, predictions, and little games for matchday brain. https://worldcup.bluet.cc",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "product_light",
+      "text": "Trying to make following the World Cup a little more fun: localized schedules, team guides, prediction cards, and fan games. Keeping it casual. https://worldcup.bluet.cc",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "product_light",
+      "text": "I built a tiny World Cup 2026 hub because I wanted one place for fixtures, teams, and prediction messing around. https://worldcup.bluet.cc",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "product_light",
+      "text": "World Cup planning mode has started way too early for me, so I made a fan hub to track teams and predictions without making it feel like homework. https://worldcup.bluet.cc",
+      "url": "https://worldcup.bluet.cc"
+    },
+    {
+      "platform": "discord",
+      "category": "product_light",
+      "text": "Working on a World Cup 2026 fan site for people who love brackets, fixtures, and arguing about dark horses before the draw even behaves. https://worldcup.bluet.cc",
+      "url": "https://worldcup.bluet.cc"
+    }
+  ]
+];

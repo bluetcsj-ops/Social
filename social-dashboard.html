@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>世界杯 2026 社媒草稿助手</title>
+  <style>
+    :root {
+      --ink: #17202a;
+      --muted: #637083;
+      --line: #d9e0e7;
+      --panel: #ffffff;
+      --page: #f5f7f8;
+      --blue: #1769aa;
+      --green: #15845c;
+      --gold: #f1b82d;
+      --red: #d94747;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--page);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px clamp(18px, 4vw, 48px);
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 3;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(22px, 3vw, 34px);
+      letter-spacing: 0;
+    }
+
+    .summary {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 14px;
+      justify-content: flex-end;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      background: #f9fbfc;
+      border-radius: 999px;
+      padding: 8px 12px;
+      white-space: nowrap;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      min-height: calc(100vh - 78px);
+    }
+
+    aside {
+      border-right: 1px solid var(--line);
+      padding: 22px;
+      background: #fbfcfd;
+    }
+
+    .filters {
+      display: grid;
+      gap: 14px;
+      position: sticky;
+      top: 94px;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    select, input {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: var(--ink);
+      font: inherit;
+    }
+
+    .content {
+      padding: 24px clamp(18px, 4vw, 46px);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+
+    article {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 22px rgba(25, 36, 50, 0.06);
+    }
+
+    article.used {
+      opacity: 0.58;
+    }
+
+    .preview {
+      aspect-ratio: 1200 / 630;
+      width: 100%;
+      background: #e8edf1;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .preview span {
+      color: var(--muted);
+      font-size: 14px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .card-body {
+      padding: 16px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0;
+      font-weight: 800;
+    }
+
+    .tag {
+      border-radius: 999px;
+      padding: 5px 8px;
+      background: #edf3f8;
+      color: #205d86;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 152px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      font: inherit;
+      line-height: 1.45;
+      color: var(--ink);
+      background: #fbfcfd;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .image-actions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .image-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    button, a.action {
+      border: 1px solid var(--line);
+      background: #ffffff;
+      color: var(--ink);
+      min-height: 40px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 10px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    button.primary { background: var(--blue); color: #ffffff; border-color: var(--blue); }
+    button.image-copy { background: var(--green); color: #ffffff; border-color: var(--green); }
+    a.x { background: #111820; color: #ffffff; border-color: #111820; }
+    a.facebook { background: #1769aa; color: #ffffff; border-color: #1769aa; }
+    button.used-toggle[data-used="true"] { background: var(--green); color: #ffffff; border-color: var(--green); }
+
+    .empty {
+      display: none;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      padding: 40px;
+      color: var(--muted);
+      text-align: center;
+      background: #ffffff;
+    }
+
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      background: #17202a;
+      color: white;
+      padding: 10px 14px;
+      border-radius: 8px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: 160ms ease;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 820px) {
+      header { align-items: flex-start; flex-direction: column; }
+      .summary { justify-content: flex-start; }
+      main { grid-template-columns: 1fr; }
+      aside { border-right: 0; border-bottom: 1px solid var(--line); }
+      .filters { position: static; grid-template-columns: 1fr 1fr; }
+      .filters label:first-child { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 520px) {
+      .filters { grid-template-columns: 1fr; }
+      .actions { grid-template-columns: 1fr; }
+      .image-actions { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>世界杯 2026 社媒草稿助手</h1>
+    </div>
+    <div class="summary" id="summary"></div>
+  </header>
+
+  <main>
+    <aside>
+      <div class="filters">
+        <label>
+          搜索
+          <input id="search" type="search" placeholder="球队、分类、正文">
+        </label>
+        <label>
+          平台
+          <select id="platform">
+            <option value="all">全部平台</option>
+            <option value="x">X</option>
+            <option value="facebook">Facebook</option>
+            <option value="discord">Discord / Telegram</option>
+          </select>
+        </label>
+        <label>
+          分类
+          <select id="category">
+            <option value="all">全部分类</option>
+            <option value="team_prediction">球队预测</option>
+            <option value="schedule">赛程讨论</option>
+            <option value="poll">投票话题</option>
+            <option value="product_light">轻量推广</option>
+          </select>
+        </label>
+        <label>
+          状态
+          <select id="status">
+            <option value="all">全部草稿</option>
+            <option value="unused">未使用</option>
+            <option value="used">已使用</option>
+          </select>
+        </label>
+      </div>
+    </aside>
+
+    <section class="content">
+      <div class="grid" id="drafts"></div>
+      <div class="empty" id="empty">没有符合筛选条件的草稿。</div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast">已复制</div>
+
+  <script src="social/social-dashboard-data.js"></script>
+  <script>
+    const sources = [
+      "social/drafts/x-posts.json",
+      "social/drafts/facebook-posts.json",
+      "social/drafts/discord-posts.json"
+    ];
+    const platformNames = {
+      x: "X",
+      facebook: "Facebook",
+      discord: "Discord / Telegram"
+    };
+    const categoryNames = {
+      team_prediction: "球队预测",
+      schedule: "赛程讨论",
+      poll: "投票话题",
+      product_light: "轻量推广"
+    };
+    const state = {
+      drafts: [],
+      used: JSON.parse(localStorage.getItem("worldcup-social-used") || "{}")
+    };
+
+    const els = {
+      grid: document.querySelector("#drafts"),
+      empty: document.querySelector("#empty"),
+      summary: document.querySelector("#summary"),
+      search: document.querySelector("#search"),
+      platform: document.querySelector("#platform"),
+      category: document.querySelector("#category"),
+      status: document.querySelector("#status"),
+      toast: document.querySelector("#toast")
+    };
+
+    function idFor(draft, index) {
+      return `${draft.platform}:${draft.category}:${draft.team || "general"}:${index}`;
+    }
+
+    function textWithUrl(draft) {
+      return draft.url && !draft.text.includes(draft.url) ? `${draft.text}\n${draft.url}` : draft.text;
+    }
+
+    function composeUrl(draft, text) {
+      const encodedText = encodeURIComponent(text);
+      if (draft.platform === "x") return `https://twitter.com/intent/tweet?text=${encodedText}`;
+      if (draft.platform === "facebook") return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(draft.url || "https://worldcup.bluet.cc")}&quote=${encodedText}`;
+      return draft.url || "https://worldcup.bluet.cc";
+    }
+
+    function showToast(message) {
+      els.toast.textContent = message;
+      els.toast.classList.add("show");
+      window.setTimeout(() => els.toast.classList.remove("show"), 1300);
+    }
+
+    function saveUsed() {
+      localStorage.setItem("worldcup-social-used", JSON.stringify(state.used));
+    }
+
+    async function copyText(text) {
+      await navigator.clipboard.writeText(text);
+      showToast("已复制");
+    }
+
+    async function copyImage(imagePath) {
+      if (!window.ClipboardItem || !navigator.clipboard?.write) {
+        await copyText(imagePath);
+        showToast("当前浏览器不支持复制图片，已复制图片路径");
+        return;
+      }
+
+      try {
+        const response = await fetch(imagePath);
+        const blob = await response.blob();
+        await navigator.clipboard.write([
+          new ClipboardItem({ [blob.type]: blob })
+        ]);
+        showToast("图片已复制，可到发帖框粘贴");
+      } catch (error) {
+        await copyText(imagePath);
+        showToast("图片复制受限，已复制图片路径");
+      }
+    }
+
+    function renderSummary(list) {
+      const total = state.drafts.length;
+      const used = Object.values(state.used).filter(Boolean).length;
+      const visible = list.length;
+      els.summary.innerHTML = `
+        <span class="pill">共 ${total} 条草稿</span>
+        <span class="pill">已使用 ${used} 条</span>
+        <span class="pill">当前显示 ${visible} 条</span>
+      `;
+    }
+
+    function getFiltered() {
+      const q = els.search.value.trim().toLowerCase();
+      const platform = els.platform.value;
+      const category = els.category.value;
+      const status = els.status.value;
+
+      return state.drafts.filter((entry) => {
+        const draft = entry.draft;
+        const haystack = `${draft.platform} ${draft.category} ${draft.team || ""} ${draft.text}`.toLowerCase();
+        const used = Boolean(state.used[entry.id]);
+        return (!q || haystack.includes(q))
+          && (platform === "all" || draft.platform === platform)
+          && (category === "all" || draft.category === category)
+          && (status === "all" || (status === "used" ? used : !used));
+      });
+    }
+
+    function render() {
+      const list = getFiltered();
+      renderSummary(list);
+      els.empty.style.display = list.length ? "none" : "block";
+      els.grid.innerHTML = "";
+
+      for (const entry of list) {
+        const draft = entry.draft;
+        const used = Boolean(state.used[entry.id]);
+        const article = document.createElement("article");
+        article.className = used ? "used" : "";
+
+        const image = draft.image
+          ? `<img src="${draft.image.replace(/^\//, "")}" alt="${draft.team || draft.category} 分享图片">`
+          : `<span>${draft.platform === "discord" ? "讨论草稿" : "纯文字草稿"}</span>`;
+
+        const text = textWithUrl(draft);
+        const imagePath = draft.image ? draft.image.replace(/^\//, "") : "";
+        const imageName = imagePath ? imagePath.split("/").pop() : "";
+        const openLabel = draft.platform === "facebook" ? "打开 Facebook" : draft.platform === "x" ? "打开 X" : "打开网站";
+        const openClass = draft.platform === "facebook" ? "facebook" : draft.platform === "x" ? "x" : "";
+        const platformName = platformNames[draft.platform] || draft.platform;
+        const categoryName = categoryNames[draft.category] || draft.category;
+        const imageTools = draft.image ? `
+            <p class="image-note">分享图：${imageName}。平台不会从分享链接自动附图，请先复制或下载图片，再手动粘贴/上传。</p>
+            <div class="image-actions">
+              <button class="image-copy" type="button">复制图片</button>
+              <a class="action image-download" href="${imagePath}" download="${imageName}">下载图片</a>
+              <button class="image-path" type="button">复制图片路径</button>
+            </div>
+          ` : "";
+
+        article.innerHTML = `
+          <div class="preview">${image}</div>
+          <div class="card-body">
+            <div class="meta">
+              <span class="tag">${platformName}</span>
+              <span>${categoryName}</span>
+              ${draft.team ? `<span>${draft.team}</span>` : ""}
+            </div>
+            <textarea>${text}</textarea>
+            <div class="actions">
+              <button class="primary copy" type="button">复制文案</button>
+              <a class="action ${openClass}" target="_blank" rel="noopener"> ${openLabel}</a>
+              <button class="used-toggle" type="button" data-used="${used}">${used ? "已使用" : "标记已用"}</button>
+              <button class="copy-url" type="button">复制链接</button>
+            </div>
+            ${imageTools}
+          </div>
+        `;
+
+        const textarea = article.querySelector("textarea");
+        const open = article.querySelector("a.action");
+        open.href = composeUrl(draft, textarea.value);
+        textarea.addEventListener("input", () => {
+          open.href = composeUrl(draft, textarea.value);
+        });
+        article.querySelector(".copy").addEventListener("click", () => copyText(textarea.value));
+        article.querySelector(".copy-url").addEventListener("click", () => copyText(draft.url || "https://worldcup.bluet.cc"));
+        const copyImageButton = article.querySelector(".image-copy");
+        const copyImagePathButton = article.querySelector(".image-path");
+        if (copyImageButton) copyImageButton.addEventListener("click", () => copyImage(imagePath));
+        if (copyImagePathButton) copyImagePathButton.addEventListener("click", () => copyText(imagePath));
+        article.querySelector(".used-toggle").addEventListener("click", (event) => {
+          state.used[entry.id] = !state.used[entry.id];
+          saveUsed();
+          event.currentTarget.dataset.used = String(state.used[entry.id]);
+          render();
+        });
+        els.grid.appendChild(article);
+      }
+    }
+
+    async function load() {
+      const groups = window.SOCIAL_DASHBOARD_DRAFTS
+        ? window.SOCIAL_DASHBOARD_DRAFTS
+        : await Promise.all(sources.map((src) => fetch(src).then((res) => res.json())));
+      state.drafts = groups.flat().map((draft, index) => ({ draft, id: idFor(draft, index) }));
+      render();
+    }
+
+    [els.search, els.platform, els.category, els.status].forEach((el) => el.addEventListener("input", render));
+    load().catch((error) => {
+      els.grid.innerHTML = "";
+      els.empty.style.display = "block";
+      els.empty.textContent = `草稿加载失败：${error.message}`;
+    });
+  </script>
+</body>
+</html>
