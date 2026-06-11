@@ -1,0 +1,12 @@
+[
+  {
+    "url": "https://x.com/example/status/1234567890",
+    "author": "Example account",
+    "username": "example",
+    "text": "Paste the real X post text here.",
+    "likes": 0,
+    "replies": 0,
+    "reposts": 0,
+    "quotes": 0
+  }
+]

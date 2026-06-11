@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Low effort signal",
+    "action": "Post one poll and compare replies vs clicks after 24 hours.",
+    "category": "poll",
+    "sample_text": "Who wins World Cup 2026? Brazil, Argentina, France, or Spain? #WorldCup2026 #Football",
+    "guardrail": "Human review only. Do not mass-post or automate platform actions."
+  },
+  {
+    "title": "Prediction card test",
+    "action": "Use one champion card, then ask followers to change one knockout step.",
+    "category": "team_prediction",
+    "sample_text": "Ronaldo's 2002 redemption arc still makes Brazil predictions feel different. My early Brazil 2026 take: they have a real path if the knockout draw is kind. #WorldCup2026 #Football",
+    "guardrail": "Human review only. Do not mass-post or automate platform actions."
+  },
+  {
+    "title": "Discussion hook",
+    "action": "Run a dark-horse question when prediction posts feel repetitive.",
+    "category": "dark_horse",
+    "sample_text": "Japan as a 2026 dark horse sounds risky until you remember: Japan beating Germany and Spain in 2022 is exactly why nobody should treat them lightly. Am I overrating them or is the path actually there? #WorldCup2026 #Football",
+    "guardrail": "Human review only. Do not mass-post or automate platform actions."
+  },
+  {
+    "title": "Humor reset",
+    "action": "Use a funny post after two serious football takes in a row.",
+    "category": "funny",
+    "sample_text": "World Cup 2026 is still far away, but the group chat is already choosing champions. #WorldCup2026 #Football",
+    "guardrail": "Human review only. Do not mass-post or automate platform actions."
+  },
+  {
+    "title": "Debate spark",
+    "action": "Use a football-only hot take, then manually reply to the best counterarguments.",
+    "category": "hot_take",
+    "sample_text": "Brazil will not win World Cup 2026. Too much attacking talent, not enough knockout calm. Convince me I am wrong. #WorldCup2026 #Football",
+    "guardrail": "Human review only. Do not mass-post or automate platform actions."
+  }
+]

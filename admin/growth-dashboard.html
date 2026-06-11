@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>世界杯 2026 增长后台</title>
+  <style>
+    :root {
+      --ink: #16202a;
+      --muted: #667587;
+      --line: #d8e0e7;
+      --panel: #ffffff;
+      --page: #f4f7f8;
+      --blue: #1769aa;
+      --green: #16855d;
+      --red: #c94141;
+      --gold: #d59a12;
+      --dark: #111820;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px clamp(18px, 4vw, 48px);
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 3;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+    h1 { font-size: clamp(23px, 3vw, 34px); letter-spacing: 0; }
+    h2 { font-size: 18px; }
+    h3 { font-size: 15px; }
+    p { color: var(--muted); line-height: 1.5; }
+
+    button, .link-button {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      min-height: 40px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 12px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    button.primary, .link-button.primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+    main {
+      display: grid;
+      gap: 20px;
+      padding: 24px clamp(18px, 4vw, 48px) 42px;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 16px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: 0 8px 22px rgba(25, 36, 50, 0.055);
+      display: grid;
+      gap: 14px;
+    }
+
+    .span-3 { grid-column: span 3; }
+    .span-4 { grid-column: span 4; }
+    .span-5 { grid-column: span 5; }
+    .span-6 { grid-column: span 6; }
+    .span-7 { grid-column: span 7; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+
+    .metric {
+      display: grid;
+      gap: 8px;
+      min-height: 118px;
+    }
+
+    .metric strong {
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1;
+    }
+
+    .score {
+      display: grid;
+      grid-template-columns: minmax(150px, 220px) 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .score-ring {
+      aspect-ratio: 1;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: conic-gradient(var(--green) calc(var(--score) * 1%), #e8edf1 0);
+      position: relative;
+    }
+
+    .score-ring::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .score-ring strong {
+      position: relative;
+      z-index: 1;
+      font-size: 42px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: minmax(110px, 1fr) minmax(80px, auto);
+      gap: 12px;
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid #edf1f4;
+    }
+
+    .row:last-child { border-bottom: 0; }
+
+    .bar {
+      height: 8px;
+      background: #e8edf1;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      width: var(--w);
+      background: var(--blue);
+    }
+
+    .tagline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      border-radius: 999px;
+      padding: 6px 9px;
+      background: #edf3f8;
+      color: #205d86;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .tag.green { background: #e8f5ef; color: #146346; }
+    .tag.gold { background: #fff5d9; color: #7d5508; }
+    .tag.red { background: #fae8e8; color: #8b2929; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 10px 8px;
+      border-bottom: 1px solid #edf1f4;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 180px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      font: inherit;
+      line-height: 1.45;
+      color: var(--ink);
+      background: #fbfcfd;
+    }
+
+    .notice {
+      border-left: 4px solid var(--gold);
+      padding: 10px 12px;
+      background: #fff9e9;
+      color: #644506;
+      border-radius: 6px;
+    }
+
+    .notice p { color: #644506; }
+
+    @media (max-width: 1040px) {
+      .span-3, .span-4, .span-5, .span-6, .span-7, .span-8 { grid-column: span 6; }
+      .score { grid-template-columns: 1fr; }
+      .score-ring { max-width: 220px; }
+    }
+
+    @media (max-width: 720px) {
+      header { align-items: flex-start; flex-direction: column; }
+      .toolbar { justify-content: flex-start; }
+      .grid { grid-template-columns: 1fr; }
+      .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-12 { grid-column: 1; }
+      table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>世界杯 2026 增长后台</h1>
+      <p>分析已采用内容、访问量提升、互动反馈和明日推荐。</p>
+    </div>
+    <div class="toolbar">
+      <span class="tag" id="last-refresh">最新刷新：读取中</span>
+      <a class="link-button" href="../social-dashboard.html">每日精选</a>
+      <button class="primary" id="copy-report" type="button">复制周报</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="grid">
+      <article class="panel span-6 score">
+        <div class="score-ring" id="score-ring"><strong id="growth-score">0</strong></div>
+        <div>
+          <h2>每日增长分</h2>
+          <p id="score-reason"></p>
+          <div class="tagline" id="score-tags"></div>
+        </div>
+      </article>
+      <article class="panel span-3 metric"><p>用户</p><strong id="users">0</strong><p id="traffic-growth"></p></article>
+      <article class="panel span-3 metric"><p>互动</p><strong id="engagement-growth">0%</strong><p>按点赞、回复、分享、点击加权。</p></article>
+      <article class="panel span-3 metric"><p>会话</p><strong id="sessions">0</strong><p>所有来源访问。</p></article>
+      <article class="panel span-3 metric"><p>浏览量</p><strong id="page-views">0</strong><p>网站需求信号。</p></article>
+      <article class="panel span-3 metric"><p>回访用户</p><strong id="returning">0</strong><p>留存信号。</p></article>
+      <article class="panel span-3 metric"><p>粉丝变化</p><strong id="followers">+0</strong><p>手动记录。</p></article>
+    </section>
+
+    <section class="grid">
+      <article class="panel span-7">
+        <h2>明日推荐</h2>
+        <div id="tomorrow"></div>
+      </article>
+      <article class="panel span-5">
+        <h2>推荐引擎</h2>
+        <div id="recommendations"></div>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="panel span-6">
+        <h2>热门页面</h2>
+        <div id="top-pages"></div>
+      </article>
+      <article class="panel span-3">
+        <h2>热门国家</h2>
+        <div id="countries"></div>
+      </article>
+      <article class="panel span-3">
+        <h2>来源渠道</h2>
+        <div id="referrers"></div>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="panel span-7">
+        <h2>反馈学习记录</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>内容</th>
+              <th>类型</th>
+              <th>国家</th>
+              <th>互动分</th>
+              <th>点击</th>
+            </tr>
+          </thead>
+          <tbody id="post-table"></tbody>
+        </table>
+      </article>
+      <article class="panel span-5">
+        <h2>学习总结</h2>
+      <div id="learning-summary"></div>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="panel span-12">
+        <h2>每日精选采用记录</h2>
+        <p>在内容页点击“采用并记录”后会出现在这里。发布后补录互动和访问量，下一次每日精选会根据这些反馈调整推荐。</p>
+        <table>
+          <thead>
+            <tr>
+              <th>日期</th>
+              <th>平台</th>
+              <th>内容</th>
+              <th>互动数据</th>
+              <th>访问提升</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="selected-table"></tbody>
+        </table>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="panel span-6">
+        <h2>每周增长报告</h2>
+        <textarea id="weekly-report"></textarea>
+      </article>
+      <article class="panel span-6">
+        <h2>数据导入</h2>
+        <p>Phase 1 使用手动 JSON 导入。你可以把 Cloudflare Analytics 的数据整理成 JSON 后粘贴进来，也可以选择本地 JSON 文件。字段沿用 <code>admin/growth-data.js</code>。</p>
+        <input id="json-file" type="file" accept=".json,application/json">
+        <textarea id="data-input"></textarea>
+        <div class="toolbar">
+          <button id="load-sample" type="button">载入当前数据</button>
+          <button class="primary" id="apply-data" type="button">应用 JSON</button>
+          <button id="clear-import" type="button">清除手动导入</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="notice">
+      <p id="data-source">这是半自动增长系统：它记录、分析、推荐，但不会自动批量发帖。你在“每日精选”里采用的内容会进入这里，作为后续推荐依据。</p>
+    </section>
+  </main>
+
+  <script src="growth-data.js"></script>
+  <script>
+    const weights = { likes: 1, replies: 3, shares: 5, linkClicks: 4, bookmarks: 2 };
+    let importedData = JSON.parse(localStorage.getItem("wc-growth-data-manual") || "null");
+    let data = importedData || window.GROWTH_DASHBOARD_DATA;
+    let selectedRecords = JSON.parse(localStorage.getItem("wc-growth-selected-posts") || "[]");
+
+    const $ = (selector) => document.querySelector(selector);
+    const fmt = (value) => new Intl.NumberFormat("zh-CN").format(Number(value) || 0);
+    const countryNames = {
+      NL: "荷兰",
+      SG: "新加坡",
+      US: "美国",
+      CN: "中国",
+      AD: "安道尔",
+      CH: "瑞士",
+      HK: "中国香港",
+      GB: "英国",
+      BR: "巴西",
+      AR: "阿根廷",
+      FR: "法国",
+      JP: "日本",
+      MX: "墨西哥",
+      DE: "德国",
+      ES: "西班牙",
+      PT: "葡萄牙"
+    };
+
+    function countryLabel(value) {
+      return countryNames[value] || value || "未知";
+    }
+
+    function signedPct(value) {
+      const number = Number(value) || 0;
+      if (number > 0) return `增长 ${number}%`;
+      if (number < 0) return `下降 ${Math.abs(number)}%`;
+      return "持平 0%";
+    }
+
+    function trendText(label, value) {
+      const number = Number(value) || 0;
+      if (number > 0) return `${label}比前 24 小时增长 ${number}%`;
+      if (number < 0) return `${label}比前 24 小时下降 ${Math.abs(number)}%`;
+      return `${label}与前 24 小时持平`;
+    }
+
+    function isContentPage(item) {
+      const rawPath = String(item.path || item.page || "").split("?")[0].toLowerCase();
+      const rawPage = String(item.page || "").toLowerCase();
+      if (!rawPath || rawPath === "/" || rawPage === "homepage") return true;
+      const ignoredPrefixes = ["/assets/", "/cdn-cgi/", "/images/", "/social/images/", "/admin/", "/favicon"];
+      const ignoredSuffixes = [".js", ".css", ".png", ".jpg", ".jpeg", ".webp", ".svg", ".ico", ".json", ".map", ".woff", ".woff2", ".ttf"];
+      return !ignoredPrefixes.some((prefix) => rawPath.startsWith(prefix))
+        && !ignoredSuffixes.some((suffix) => rawPath.endsWith(suffix));
+    }
+
+    function contentPages() {
+      const pages = (data.topPages || []).filter(isContentPage);
+      return pages.length ? pages : [{ page: "Homepage", path: "/", views: data.traffic.users || data.traffic.pageViews || 0, avgTimeSec: 0 }];
+    }
+
+    function pageMeaning(item) {
+      const page = item.page || "";
+      const views = fmt(item.views);
+      if (page === "Homepage") return `首页是当前入口页，过去 24 小时约 ${views} 次访问。建议把今日精选、赛程和预测入口放得更明显。`;
+      if (page === "Schedule") return `赛程页正在吸引用户，过去 24 小时约 ${views} 次访问。建议多做赛程相关内容和本地时间提醒。`;
+      if (page === "Teams") return `球队页有人在看，过去 24 小时约 ${views} 次访问。建议补强热门国家队页面和球星故事。`;
+      if (page === "Predictions") return `预测页有需求，过去 24 小时约 ${views} 次访问。建议加入更容易分享的预测卡。`;
+      if (page === "Game") return `小游戏页有访问，过去 24 小时约 ${views} 次访问。建议把入口做得更直接。`;
+      return `${page} 过去 24 小时约 ${views} 次访问。建议确认它是否是用户真正需要的内容页。`;
+    }
+
+    function postScore(post) {
+      return (post.likes || 0) * weights.likes
+        + (post.replies || 0) * weights.replies
+        + (post.shares || 0) * weights.shares
+        + (post.linkClicks || 0) * weights.linkClicks
+        + (post.bookmarks || 0) * weights.bookmarks;
+    }
+
+    function selectedAsPost(record) {
+      return {
+        id: record.id,
+        platform: record.platform,
+        country: record.country || record.team || "General",
+        contentType: record.contentType || record.category || "Daily Pick",
+        postedAt: record.selectedAt || new Date().toISOString(),
+        impressions: Number(record.impressions) || 0,
+        likes: Number(record.likes) || 0,
+        replies: Number(record.replies) || 0,
+        shares: Number(record.shares) || 0,
+        bookmarks: Number(record.bookmarks) || 0,
+        linkClicks: Number(record.linkClicks) || 0
+      };
+    }
+
+    function activePosts() {
+      const selectedIds = new Set(selectedRecords.map((record) => record.id));
+      const imported = (data.posts || []).filter((post) => !selectedIds.has(post.id));
+      return [...selectedRecords.map(selectedAsPost), ...imported];
+    }
+
+    function saveSelectedRecords() {
+      localStorage.setItem("wc-growth-selected-posts", JSON.stringify(selectedRecords));
+    }
+
+    function groupBy(items, key) {
+      return items.reduce((acc, item) => {
+      const value = item[key] || "Unknown";
+        acc[value] = acc[value] || [];
+        acc[value].push(item);
+        return acc;
+      }, {});
+    }
+
+    function rankedGroups(items, key) {
+      const grouped = Object.entries(groupBy(items, key)).map(([name, posts]) => ({
+        name,
+        score: posts.reduce((sum, post) => sum + postScore(post), 0),
+        posts
+      })).sort((a, b) => b.score - a.score);
+      return grouped.length ? grouped : [{ name: "暂无数据", score: 0, posts: [] }];
+    }
+
+    function bestPostingTimes(posts) {
+      const grouped = {};
+      for (const post of posts) {
+        const hour = new Date(post.postedAt).getHours();
+        const label = `${hour}:00`;
+        grouped[label] = grouped[label] || [];
+        grouped[label].push(post);
+      }
+      return Object.entries(grouped).map(([name, posts]) => ({
+        name,
+        score: Math.round(posts.reduce((sum, post) => sum + postScore(post), 0) / posts.length)
+      })).sort((a, b) => b.score - a.score);
+    }
+
+    function growthScore() {
+      const traffic = Math.max(0, Math.min(35, data.traffic.trafficGrowthPct + 17));
+      const engagement = Math.max(0, Math.min(45, data.traffic.engagementGrowthPct + 18));
+      const retention = Math.min(20, Math.round((data.traffic.returningVisitors / Math.max(1, data.traffic.users)) * 100));
+      return Math.min(100, traffic + engagement + retention);
+    }
+
+    function barRows(container, items, labelKey, valueKey) {
+      const max = Math.max(...items.map((item) => item[valueKey]), 1);
+      container.innerHTML = items.map((item) => `
+        <div class="row">
+          <div>
+            <strong>${item[labelKey]}</strong>
+            ${item.path ? `<p>${item.path}</p>` : ""}
+            ${item.improvement ? `<p>${item.improvement}</p>` : ""}
+            <div class="bar" style="--w:${Math.max(5, item[valueKey] / max * 100)}%"><span></span></div>
+          </div>
+          <strong>${fmt(item[valueKey])}</strong>
+        </div>
+      `).join("");
+    }
+
+    function buildTomorrowRecommendation() {
+      const posts = activePosts();
+      const countries = rankedGroups(posts, "country");
+      const types = rankedGroups(posts, "contentType");
+      const topCountry = countries[0];
+      const topType = types[0];
+      const bestPage = [...contentPages()].sort((a, b) => b.views - a.views)[0];
+      const style = topType.name === "Champion Bracket" || topType.name === "冠军预测" ? "争议型" : "讨论型";
+      const country = countryLabel(topCountry.name);
+      const draft = `大家都在聊法国和阿根廷。\n\n但如果 ${country} 才是 2026 年真正能带动讨论的球队呢？\n\n说服我：这个判断哪里太早了。`;
+
+      return {
+        type: topType.name,
+        country,
+        style,
+        draft,
+        reason: `${country} 目前是最强国家信号，${topType.name} 是表现最好的内容类型。${bestPage.page} 是访问最高页面，明日内容应把讨论导向这个用户需求。`
+      };
+    }
+
+    function buildWeeklyReport() {
+      const posts = activePosts();
+      const bestPost = [...posts].sort((a, b) => postScore(b) - postScore(a))[0] || { id: "暂无", contentType: "暂无" };
+      const worstPost = [...posts].sort((a, b) => postScore(a) - postScore(b))[0] || bestPost;
+      const bestCountry = rankedGroups(posts, "country")[0];
+      const bestCard = posts.filter((post) => String(post.contentType).includes("Bracket") || String(post.contentType).includes("Card") || String(post.contentType).includes("预测")).sort((a, b) => postScore(b) - postScore(a))[0] || bestPost;
+      const pages = contentPages();
+      const bestPage = [...pages].sort((a, b) => b.views - a.views)[0];
+      const needsWork = [...pages].sort((a, b) => a.avgTimeSec - b.avgTimeSec)[0];
+
+      return [
+        "每周增长报告",
+        "",
+        `访问变化：${signedPct(data.traffic.trafficGrowthPct)}`,
+        `热门页面：${bestPage.page}（${fmt(bestPage.views)} 浏览）`,
+        `最佳国家：${countryLabel(bestCountry.name)}（${fmt(bestCountry.score)} 互动分）`,
+        `最佳社媒内容：${bestPost.id}（${fmt(postScore(bestPost))} 分）`,
+        `最弱社媒内容：${worstPost.id}（${fmt(postScore(worstPost))} 分）`,
+        `最强预测卡：${bestCard.id}`,
+        `需要优化页面：${needsWork.page} - ${needsWork.improvement}`,
+        "",
+        "新建议：",
+        `1. 加码 ${countryLabel(bestCountry.name)} 相关预测内容。`,
+        `2. 多做 ${bestCard.contentType}，但继续人工审核。`,
+        `3. 扩展 ${bestPage.page} 相关内容，因为它正在贡献最多访问。`,
+        "4. 网站推广保持每周最多 1 次，90% 内容继续围绕足球讨论。"
+      ].join("\n");
+    }
+
+    function render() {
+      const score = growthScore();
+      const posts = activePosts();
+      const topCountries = rankedGroups(posts, "country");
+      const worstCountries = [...topCountries].reverse();
+      const topTypes = rankedGroups(posts, "contentType");
+      const topTimes = bestPostingTimes(posts);
+      const tomorrow = buildTomorrowRecommendation();
+      const pages = contentPages();
+      const bestPage = [...pages].sort((a, b) => b.views - a.views)[0];
+      const needsWorkPage = [...pages].sort((a, b) => a.avgTimeSec - b.avgTimeSec)[0];
+
+      $("#growth-score").textContent = score;
+      const sourcePrefix = importedData ? "当前使用手动导入缓存" : "当前读取 admin/growth-data.js";
+      $("#data-source").textContent = data.source
+        ? `${sourcePrefix}：${data.source}，生成时间：${data.generatedAt}。每日精选采用记录会继续作为反馈学习数据。`
+        : `${sourcePrefix}。后台在只有 JSON 文件的情况下也能工作。`;
+      $("#last-refresh").textContent = data.generatedAt ? `最新刷新：${data.generatedAt}` : "最新刷新：暂无";
+      $("#score-ring").style.setProperty("--score", score);
+      $("#score-reason").textContent = `${trendText("访问", data.traffic.trafficGrowthPct)}，${trendText("互动", data.traffic.engagementGrowthPct)}，粉丝 ${Number(data.traffic.followersDelta) >= 0 ? "+" : ""}${data.traffic.followersDelta}。已采用精选 ${selectedRecords.length} 条。`;
+      $("#score-tags").innerHTML = [
+        `<span class="tag green">最佳国家：${countryLabel(topCountries[0].name)}</span>`,
+        `<span class="tag gold">最佳类型：${topTypes[0].name}</span>`,
+        `<span class="tag">最佳时间：${topTimes[0]?.name || "暂无"}</span>`
+      ].join("");
+
+      $("#users").textContent = fmt(data.traffic.users);
+      $("#sessions").textContent = fmt(data.traffic.sessions);
+      $("#page-views").textContent = fmt(data.traffic.pageViews);
+      $("#returning").textContent = fmt(data.traffic.returningVisitors);
+      $("#traffic-growth").textContent = trendText("访问", data.traffic.trafficGrowthPct);
+      $("#engagement-growth").textContent = signedPct(data.traffic.engagementGrowthPct);
+      $("#followers").textContent = `+${data.traffic.followersDelta}`;
+
+      $("#tomorrow").innerHTML = `
+        <div class="tagline">
+          <span class="tag green">类型：${tomorrow.type}</span>
+          <span class="tag gold">国家：${tomorrow.country}</span>
+          <span class="tag">风格：${tomorrow.style}</span>
+        </div>
+        <textarea readonly>${tomorrow.draft}</textarea>
+        <p><strong>原因：</strong>${tomorrow.reason}</p>
+      `;
+
+      $("#recommendations").innerHTML = [
+        `表现最好的内容：${topTypes[0].name}。`,
+        `互动最强国家：${topCountries[0].name}。`,
+        `访问最高页面：${bestPage.page}。`,
+        `需要优化页面：${needsWorkPage.page}。`,
+        `明天建议发：${tomorrow.country} ${tomorrow.type}。`,
+        "下一步功能：强化赛程分享，因为赛程流量信号最强。"
+      ].map((text) => `<div class="row"><div>${text}</div></div>`).join("");
+
+      barRows($("#top-pages"), pages.map((item) => ({ ...item, improvement: pageMeaning(item) })), "page", "views");
+      barRows($("#countries"), (data.countries || []).map((item) => ({ ...item, country: countryLabel(item.country) })), "country", "sessions");
+      barRows($("#referrers"), data.referrers, "source", "sessions");
+
+      $("#post-table").innerHTML = [...posts].sort((a, b) => postScore(b) - postScore(a)).map((post) => `
+        <tr>
+          <td>${post.id}<br><span class="tag">${post.platform}</span></td>
+          <td>${post.contentType}</td>
+          <td>${countryLabel(post.country)}</td>
+          <td><strong>${fmt(postScore(post))}</strong></td>
+          <td>${fmt(post.linkClicks || 0)}</td>
+        </tr>
+      `).join("");
+
+      $("#learning-summary").innerHTML = `
+        <div class="row"><div><strong>最佳国家</strong><p>${topCountries.slice(0, 3).map((item) => countryLabel(item.name)).join(", ")}</p></div></div>
+        <div class="row"><div><strong>较弱国家</strong><p>${worstCountries.slice(0, 3).map((item) => countryLabel(item.name)).join(", ")}</p></div></div>
+        <div class="row"><div><strong>最佳内容类型</strong><p>${topTypes.slice(0, 3).map((item) => item.name).join(", ")}</p></div></div>
+        <div class="row"><div><strong>最佳发布时间</strong><p>${topTimes.slice(0, 3).map((item) => `${item.name} (${fmt(item.score)})`).join(", ")}</p></div></div>
+        <div class="row"><div><strong>互动分公式</strong><p>点赞 + 回复 x 3 + 分享 x 5 + 链接点击 x 4 + 收藏 x 2。</p></div></div>
+      `;
+
+      renderSelectedRecords();
+      $("#weekly-report").value = buildWeeklyReport();
+    }
+
+    function renderSelectedRecords() {
+      const table = $("#selected-table");
+      if (!selectedRecords.length) {
+        table.innerHTML = `<tr><td colspan="6">还没有采用记录。回到“每日精选”点击“采用并记录”后，这里会开始学习。</td></tr>`;
+        return;
+      }
+      table.innerHTML = selectedRecords.map((record, index) => {
+        const lift = Number(record.pageViewsAfter || 0) - Number(record.pageViewsBefore || 0);
+        const liftText = record.pageViewsBefore || record.pageViewsAfter ? `${lift >= 0 ? "+" : ""}${fmt(lift)}` : "待补";
+        return `
+          <tr>
+            <td>${record.selectedDate || ""}</td>
+            <td>${record.platform}</td>
+            <td><strong>${record.country || record.team || "General"}</strong><br>${record.contentType || record.category}<br><span class="tag">${record.status || "selected"}</span></td>
+            <td>
+              <input data-index="${index}" data-field="impressions" type="number" min="0" value="${record.impressions || 0}" placeholder="曝光">
+              <input data-index="${index}" data-field="likes" type="number" min="0" value="${record.likes || 0}" placeholder="点赞">
+              <input data-index="${index}" data-field="replies" type="number" min="0" value="${record.replies || 0}" placeholder="回复">
+              <input data-index="${index}" data-field="shares" type="number" min="0" value="${record.shares || 0}" placeholder="分享">
+              <input data-index="${index}" data-field="linkClicks" type="number" min="0" value="${record.linkClicks || 0}" placeholder="点击">
+              <p>互动分：${fmt(postScore(selectedAsPost(record)))}</p>
+            </td>
+            <td>
+              <input data-index="${index}" data-field="pageViewsBefore" type="number" min="0" value="${record.pageViewsBefore || ""}" placeholder="发布前浏览量">
+              <input data-index="${index}" data-field="pageViewsAfter" type="number" min="0" value="${record.pageViewsAfter || ""}" placeholder="发布后浏览量">
+              <p>提升：${liftText}</p>
+            </td>
+            <td><button data-save="${index}" type="button">保存反馈</button></td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    $("#load-sample").addEventListener("click", () => {
+      $("#data-input").value = JSON.stringify(data, null, 2);
+    });
+
+    $("#apply-data").addEventListener("click", () => {
+      try {
+        data = JSON.parse($("#data-input").value);
+        importedData = data;
+        localStorage.setItem("wc-growth-data-manual", JSON.stringify(data));
+        render();
+      } catch (error) {
+        alert(`JSON 解析失败：${error.message}`);
+      }
+    });
+
+    $("#json-file").addEventListener("change", async (event) => {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      try {
+        const text = await file.text();
+        data = JSON.parse(text);
+        importedData = data;
+        $("#data-input").value = JSON.stringify(data, null, 2);
+        localStorage.setItem("wc-growth-data-manual", JSON.stringify(data));
+        render();
+      } catch (error) {
+        alert(`JSON 文件读取失败：${error.message}`);
+      }
+    });
+
+    $("#clear-import").addEventListener("click", () => {
+      localStorage.removeItem("wc-growth-data");
+      localStorage.removeItem("wc-growth-data-manual");
+      importedData = null;
+      data = window.GROWTH_DASHBOARD_DATA;
+      $("#data-input").value = "";
+      render();
+    });
+
+    $("#copy-report").addEventListener("click", async () => {
+      await navigator.clipboard.writeText($("#weekly-report").value);
+      $("#copy-report").textContent = "已复制";
+      window.setTimeout(() => $("#copy-report").textContent = "复制周报", 1200);
+    });
+
+    document.addEventListener("input", (event) => {
+      const target = event.target;
+      if (!target.matches("#selected-table input")) return;
+      const index = Number(target.dataset.index);
+      const field = target.dataset.field;
+      selectedRecords[index][field] = target.value === "" ? null : Number(target.value);
+      if (field === "pageViewsBefore" || field === "pageViewsAfter") {
+        const before = Number(selectedRecords[index].pageViewsBefore) || 0;
+        const after = Number(selectedRecords[index].pageViewsAfter) || 0;
+        selectedRecords[index].trafficLift = before || after ? after - before : null;
+      }
+      saveSelectedRecords();
+    });
+
+    document.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-save]");
+      if (!button) return;
+      const index = Number(button.dataset.save);
+      selectedRecords[index].status = "measured";
+      saveSelectedRecords();
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>
