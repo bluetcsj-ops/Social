@@ -1,253 +1,363 @@
 [
   {
-    "date": "2026-06-10",
+    "date": "2026-06-11",
     "platform": "x",
     "rhythm": "prediction/share-card post",
     "category": "team_prediction",
     "team": "Brazil",
-    "text": "Ronaldo's 2002 redemption arc still makes Brazil predictions feel different. My way-too-early Brazil 2026 take: if the vibe clicks, they can make noise. #WorldCup2026 #Football",
+    "text": "Ronaldo's 2002 redemption arc still makes Brazil predictions feel different. My early Brazil 2026 take: they have a real path if the knockout draw is kind. #WorldCup2026 #Football",
     "image": "/social/images/brazil-prediction.png",
-    "url": "https://worldcup.bluet.cc"
-  },
-  {
-    "date": "2026-06-11",
-    "platform": "x",
-    "rhythm": "daily X post",
-    "category": "team_prediction",
-    "team": "Argentina",
-    "text": "Argentina bracket talk always starts with a clip in my head. That Messi and Di Maria 2022 final link-up still feels unreal. How far are we taking them in 2026? #WorldCup2026 #Football",
-    "image": "/social/images/argentina-prediction.png",
-    "url": "https://worldcup.bluet.cc"
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-06-12",
     "platform": "x",
-    "rhythm": "football discussion post",
-    "category": "schedule",
-    "team": "Brazil",
-    "text": "That 2002 front line is still the World Cup memory I compare every Brazil attack to. So yeah, the Brazil group-stage schedule is going straight into my calendar. #WorldCup2026",
-    "image": null,
-    "url": "https://worldcup.bluet.cc"
+    "rhythm": "daily X post",
+    "category": "team_prediction",
+    "team": "Argentina",
+    "text": "Argentina bracket talk always starts with one big tournament memory. That Messi and Di Maria 2022 final link-up still feels unreal. How far should we take them in 2026? #WorldCup2026 #Football",
+    "image": "/social/images/argentina-prediction.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-06-13",
     "platform": "x",
-    "rhythm": "daily X post",
-    "category": "team_prediction",
-    "team": "France",
-    "text": "Made a France prediction card and immediately started overthinking it. When a team has recent memories of Mbappe deciding games, every bracket looks dangerous. This is how the World Cup gets me every time. #WorldCup2026 #Football",
-    "image": "/social/images/france-prediction.png",
-    "url": "https://worldcup.bluet.cc"
+    "rhythm": "football discussion post",
+    "category": "dark_horse",
+    "team": "Japan",
+    "text": "Japan as a 2026 dark horse sounds risky until you remember: Japan beating Germany and Spain in 2022 is exactly why nobody should treat them lightly. Am I overrating them or is the path actually there? #WorldCup2026 #Football",
+    "image": "/social/images/topic-dark-horse.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-06-14",
+    "platform": "x",
+    "rhythm": "daily X post",
+    "category": "team_prediction",
+    "team": "France",
+    "text": "Made a France prediction card and started comparing every possible knockout path. When a team has recent memories of Mbappe deciding games, every bracket looks dangerous. #WorldCup2026 #Football",
+    "image": "/social/images/france-prediction.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
+  },
+  {
+    "date": "2026-06-15",
     "platform": "x",
     "rhythm": "website-related post",
     "category": "product_light",
     "team": null,
     "text": "Got excited for World Cup 2026 and started building a small fan hub in my spare time. Mostly schedules, team pages, predictions, and little games for matchday brain. #WorldCup2026",
-    "image": null,
-    "url": "https://worldcup.bluet.cc"
-  },
-  {
-    "date": "2026-06-15",
-    "platform": "x",
-    "rhythm": "football discussion post",
-    "category": "schedule",
-    "team": "Argentina",
-    "text": "After that 2022 final, Argentina have main-character energy in every bracket chat. That is why the Argentina group path feels spicy from match one. #WorldCup2026",
-    "image": null,
-    "url": "https://worldcup.bluet.cc"
+    "image": "/social/images/topic-product-light.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-06-16",
     "platform": "x",
-    "rhythm": "daily X post",
-    "category": "team_prediction",
-    "team": "England",
-    "text": "England fans, be real: what is the 2026 ceiling? England's recent semi-final and final near-misses make every prediction feel loaded. I can talk myself into a run so fast. #WorldCup2026 #Football",
-    "image": "/social/images/england-prediction.png",
-    "url": "https://worldcup.bluet.cc"
+    "rhythm": "football discussion post",
+    "category": "dark_horse",
+    "team": "Mexico",
+    "text": "Dark-horse watch: Mexico. Mexico beating Germany in 2018 is still the kind of memory that makes dark-horse talk fun. Give me the case against them before I get too carried away. #WorldCup2026 #Football",
+    "image": "/social/images/topic-dark-horse.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-06-17",
     "platform": "x",
-    "rhythm": "prediction/share-card post",
+    "rhythm": "daily X post",
     "category": "team_prediction",
-    "team": "Spain",
-    "text": "Iniesta's 2010 final goal is the kind of memory that makes Spain predictions feel romantic. My way-too-early Spain 2026 take: if the vibe clicks, they can make noise. #WorldCup2026 #Football",
-    "image": "/social/images/spain-prediction.png",
-    "url": "https://worldcup.bluet.cc"
+    "team": "England",
+    "text": "England fans, what is the realistic 2026 ceiling? England's recent semi-final and final near-misses make every prediction feel loaded. #WorldCup2026 #Football",
+    "image": "/social/images/england-prediction.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-06-18",
     "platform": "x",
-    "rhythm": "daily X post",
+    "rhythm": "prediction/share-card post",
     "category": "team_prediction",
-    "team": "Portugal",
-    "text": "Portugal bracket talk always starts with a clip in my head. Portugal always feels one Bruno pass or one Leao run away from a highlight clip. How far are we taking them in 2026? #WorldCup2026 #Football",
-    "image": "/social/images/portugal-prediction.png",
-    "url": "https://worldcup.bluet.cc"
+    "team": "Spain",
+    "text": "Iniesta's 2010 final goal is the kind of memory that makes Spain predictions feel romantic. My early Spain 2026 take: they have a real path if the knockout draw is kind. #WorldCup2026 #Football",
+    "image": "/social/images/spain-prediction.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-06-19",
     "platform": "x",
-    "rhythm": "football discussion post",
-    "category": "schedule",
-    "team": "USA",
-    "text": "I keep checking possible USA kickoff times. Donovan's 2010 stoppage-time goal is still the USA World Cup memory that gives me chills. Timezone pain is part of the World Cup package. #WorldCup2026",
-    "image": null,
-    "url": "https://worldcup.bluet.cc"
+    "rhythm": "daily X post",
+    "category": "team_prediction",
+    "team": "Portugal",
+    "text": "Portugal bracket talk always starts with one big tournament memory. Portugal always feels one Bruno pass or one Leao run away from a highlight clip. How far should we take them in 2026? #WorldCup2026 #Football",
+    "image": "/social/images/portugal-prediction.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-06-20",
     "platform": "x",
-    "rhythm": "daily X post",
-    "category": "team_prediction",
-    "team": "Germany",
-    "text": "Made a Germany prediction card and immediately started overthinking it. Germany's 2014 title run is the reminder to never write them off too early. This is how the World Cup gets me every time. #WorldCup2026 #Football",
-    "image": "/social/images/germany-prediction.png",
-    "url": "https://worldcup.bluet.cc"
+    "rhythm": "football discussion post",
+    "category": "dark_horse",
+    "team": "USA",
+    "text": "If the 2026 bracket opens up, USA are exactly the kind of team I would not want to face in a knockout match. #WorldCup2026 #Football",
+    "image": "/social/images/topic-dark-horse.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-06-21",
+    "platform": "x",
+    "rhythm": "daily X post",
+    "category": "team_prediction",
+    "team": "Germany",
+    "text": "Made a Germany prediction card and started comparing every possible knockout path. Germany's 2014 title run is the reminder to never write them off too early. #WorldCup2026 #Football",
+    "image": "/social/images/germany-prediction.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
+  },
+  {
+    "date": "2026-06-22",
+    "platform": "x",
+    "rhythm": "daily X post",
+    "category": "team_prediction",
+    "team": "USA",
+    "text": "USA fans, what is the realistic 2026 ceiling? The USA has enough home-crowd energy in 2026 to make every group match feel bigger. #WorldCup2026 #Football",
+    "image": "/social/images/usa-prediction.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
+  },
+  {
+    "date": "2026-06-23",
+    "platform": "x",
+    "rhythm": "football discussion post",
+    "category": "dark_horse",
+    "team": "Portugal",
+    "text": "Portugal as a 2026 dark horse sounds risky until you remember: Ronaldo has given Portugal so many tournament moments that they never feel ordinary. Am I overrating them or is the path actually there? #WorldCup2026 #Football",
+    "image": "/social/images/topic-dark-horse.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
+  },
+  {
+    "date": "2026-06-24",
+    "platform": "x",
+    "rhythm": "daily X post",
+    "category": "team_prediction",
+    "team": "Mexico",
+    "text": "Mexico's World Cup story always has noise, pressure, and one match that feels massive. My early Mexico 2026 take: they have a real path if the knockout draw is kind. #WorldCup2026 #Football",
+    "image": "/social/images/mexico-prediction.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
+  },
+  {
+    "date": "2026-06-25",
+    "platform": "x",
+    "rhythm": "prediction/share-card post",
+    "category": "team_prediction",
+    "team": "Japan",
+    "text": "Japan bracket talk always starts with one big tournament memory. Japan beating Germany and Spain in 2022 is exactly why nobody should treat them lightly. How far should we take them in 2026? #WorldCup2026 #Football",
+    "image": "/social/images/japan-prediction.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
+  },
+  {
+    "date": "2026-06-26",
     "platform": "x",
     "rhythm": "website-related post",
     "category": "product_light",
     "team": null,
     "text": "Trying to make following the World Cup a little more fun: localized schedules, team guides, prediction cards, and fan games. Keeping it casual. #WorldCup2026",
-    "image": null,
-    "url": "https://worldcup.bluet.cc"
-  },
-  {
-    "date": "2026-06-22",
-    "platform": "x",
-    "rhythm": "football discussion post",
-    "category": "schedule",
-    "team": "Mexico",
-    "text": "Mexico group-stage watch plan: clear the calendar, then remember mexico beating Germany in 2018 is still the kind of memory that makes dark-horse talk fun. #WorldCup2026",
-    "image": null,
-    "url": "https://worldcup.bluet.cc"
-  },
-  {
-    "date": "2026-06-23",
-    "platform": "x",
-    "rhythm": "daily X post",
-    "category": "team_prediction",
-    "team": "USA",
-    "text": "USA fans, be real: what is the 2026 ceiling? The USA has enough home-crowd energy in 2026 to make every group match feel bigger. I can talk myself into a run so fast. #WorldCup2026 #Football",
-    "image": "/social/images/usa-prediction.png",
-    "url": "https://worldcup.bluet.cc"
-  },
-  {
-    "date": "2026-06-24",
-    "platform": "x",
-    "rhythm": "prediction/share-card post",
-    "category": "team_prediction",
-    "team": "Mexico",
-    "text": "Mexico's World Cup story always has noise, pressure, and one match that feels massive. My way-too-early Mexico 2026 take: if the vibe clicks, they can make noise. #WorldCup2026 #Football",
-    "image": "/social/images/mexico-prediction.png",
-    "url": "https://worldcup.bluet.cc"
-  },
-  {
-    "date": "2026-06-25",
-    "platform": "x",
-    "rhythm": "daily X post",
-    "category": "team_prediction",
-    "team": "Japan",
-    "text": "Japan bracket talk always starts with a clip in my head. Japan beating Germany and Spain in 2022 is exactly why nobody should treat them lightly. How far are we taking them in 2026? #WorldCup2026 #Football",
-    "image": "/social/images/japan-prediction.png",
-    "url": "https://worldcup.bluet.cc"
-  },
-  {
-    "date": "2026-06-26",
-    "platform": "x",
-    "rhythm": "football discussion post",
-    "category": "schedule",
-    "team": "England",
-    "text": "If England start hot in the group, I am instantly changing my bracket. England always has that mix of huge talent and tournament tension. #WorldCup2026",
-    "image": null,
-    "url": "https://worldcup.bluet.cc"
+    "image": "/social/images/topic-product-light.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-06-27",
     "platform": "x",
-    "rhythm": "daily X post",
-    "category": "poll",
-    "team": null,
-    "text": "Brazil 2002, Spain 2010, Germany 2014, Argentina 2022: which champion style feels most likely to work in 2026? #WorldCup2026 #Football",
-    "image": null,
-    "url": "https://worldcup.bluet.cc"
+    "rhythm": "football discussion post",
+    "category": "dark_horse",
+    "team": "Spain",
+    "text": "Dark-horse watch: Spain. Iniesta's 2010 final goal is the kind of memory that makes Spain predictions feel romantic. Give me the case against them before I get too carried away. #WorldCup2026 #Football",
+    "image": "/social/images/topic-dark-horse.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-06-28",
     "platform": "x",
-    "rhythm": "website-related post",
-    "category": "product_light",
+    "rhythm": "daily X post",
+    "category": "funny",
     "team": null,
-    "text": "I built a tiny World Cup 2026 hub because I wanted one place for fixtures, teams, and prediction messing around. #WorldCup2026",
-    "image": null,
-    "url": "https://worldcup.bluet.cc"
+    "text": "World Cup 2026 is still far away, but the group chat is already choosing champions. #WorldCup2026 #Football",
+    "image": "/social/images/topic-funny.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-06-29",
     "platform": "x",
-    "rhythm": "football discussion post",
-    "category": "poll",
+    "rhythm": "daily X post",
+    "category": "funny",
     "team": null,
-    "text": "Who is your early World Cup 2026 dark horse? Japan's 2022 run is still the blueprint for me. #WorldCup2026 #Football",
-    "image": null,
-    "url": "https://worldcup.bluet.cc"
+    "text": "Every early World Cup prediction should come with one rule: we are allowed to change our minds after the draw. #WorldCup2026 #Football",
+    "image": "/social/images/topic-funny.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-06-30",
     "platform": "x",
-    "rhythm": "daily X post",
-    "category": "poll",
+    "rhythm": "football discussion post",
+    "category": "funny",
     "team": null,
-    "text": "Which group would be the most fun: pure chaos, one giant favorite, or four teams with Mexico-vs-Germany-2018 energy? #WorldCup2026 #Football",
-    "image": null,
-    "url": "https://worldcup.bluet.cc"
+    "text": "There is always one team people ignore in June and suddenly fear by the knockout stage. #WorldCup2026 #Football",
+    "image": "/social/images/topic-funny.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-07-01",
     "platform": "x",
-    "rhythm": "prediction/share-card post",
-    "category": "team_prediction",
-    "team": "Argentina",
-    "text": "Argentina bracket talk always starts with a clip in my head. That Messi and Di Maria 2022 final link-up still feels unreal. How far are we taking them in 2026? #WorldCup2026 #Football",
-    "image": "/social/images/argentina-prediction.png",
-    "url": "https://worldcup.bluet.cc"
+    "rhythm": "daily X post",
+    "category": "funny",
+    "team": null,
+    "text": "The first big upset will make half the internet rewrite its World Cup bracket. #WorldCup2026 #Football",
+    "image": "/social/images/topic-funny.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-07-02",
     "platform": "x",
-    "rhythm": "daily X post",
-    "category": "poll",
-    "team": null,
-    "text": "Early Golden Boot pick? Mbappe's 2022 final still makes me afraid to pick against him. #WorldCup2026 #Football",
-    "image": null,
-    "url": "https://worldcup.bluet.cc"
+    "rhythm": "prediction/share-card post",
+    "category": "team_prediction",
+    "team": "Argentina",
+    "text": "Argentina bracket talk always starts with one big tournament memory. That Messi and Di Maria 2022 final link-up still feels unreal. How far should we take them in 2026? #WorldCup2026 #Football",
+    "image": "/social/images/argentina-prediction.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-07-03",
     "platform": "x",
-    "rhythm": "football discussion post",
-    "category": "poll",
+    "rhythm": "daily X post",
+    "category": "funny",
     "team": null,
-    "text": "Who has the better 2026 setup right now: France depth, Brazil flair, Argentina control, or Spain tempo? #WorldCup2026 #Football",
-    "image": null,
-    "url": "https://worldcup.bluet.cc"
+    "text": "World Cup debates are better when nobody treats a prediction like a final answer. #WorldCup2026 #Football",
+    "image": "/social/images/topic-funny.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-07-04",
     "platform": "x",
-    "rhythm": "daily X post",
-    "category": "poll",
+    "rhythm": "football discussion post",
+    "category": "funny",
     "team": null,
-    "text": "Most annoying team to face in a World Cup: elite attack, locked-in defense, or a fearless underdog like Japan in 2022? #WorldCup2026 #Football",
-    "image": null,
-    "url": "https://worldcup.bluet.cc"
+    "text": "One strong group-stage performance can turn a quiet team into everyone's dark-horse pick. #WorldCup2026 #Football",
+    "image": "/social/images/topic-funny.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-07-05",
@@ -255,48 +365,88 @@
     "rhythm": "website-related post",
     "category": "product_light",
     "team": null,
-    "text": "World Cup planning mode has started way too early for me, so I made a fan hub to track teams and predictions without making it feel like homework. #WorldCup2026",
-    "image": null,
-    "url": "https://worldcup.bluet.cc"
+    "text": "I built a tiny World Cup 2026 hub because I wanted one place for fixtures, teams, and prediction messing around. #WorldCup2026",
+    "image": "/social/images/topic-product-light.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-07-06",
     "platform": "x",
-    "rhythm": "football discussion post",
-    "category": "poll",
+    "rhythm": "daily X post",
+    "category": "fan_life",
     "team": null,
-    "text": "If one host team makes a big run in 2026, is it USA home energy, Mexico tournament noise, or Canada surprise factor? #WorldCup2026 #Football",
-    "image": null,
-    "url": "https://worldcup.bluet.cc"
+    "text": "The best World Cup watch parties always have one person checking the table every five minutes. #WorldCup2026 #Football",
+    "image": "/social/images/topic-fan-life.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-07-07",
     "platform": "x",
-    "rhythm": "daily X post",
-    "category": "poll",
+    "rhythm": "football discussion post",
+    "category": "fan_life",
     "team": null,
-    "text": "Which 2026 final has the best storyline: Argentina aura, Mbappe's France, Brazil chasing magic, or England stress levels? #WorldCup2026 #Football",
-    "image": null,
-    "url": "https://worldcup.bluet.cc"
+    "text": "Kickoff times will decide which matches become breakfast games, lunch games, or late-night games. #WorldCup2026 #Football",
+    "image": "/social/images/topic-fan-life.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-07-08",
     "platform": "x",
-    "rhythm": "prediction/share-card post",
-    "category": "team_prediction",
-    "team": "Mexico",
-    "text": "Mexico's World Cup story always has noise, pressure, and one match that feels massive. My way-too-early Mexico 2026 take: if the vibe clicks, they can make noise. #WorldCup2026 #Football",
-    "image": "/social/images/mexico-prediction.png",
-    "url": "https://worldcup.bluet.cc"
+    "rhythm": "daily X post",
+    "category": "fan_life",
+    "team": null,
+    "text": "Every tournament has one player who makes people search for his club five minutes after the match. #WorldCup2026 #Football",
+    "image": "/social/images/topic-fan-life.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   },
   {
     "date": "2026-07-09",
     "platform": "x",
+    "rhythm": "prediction/share-card post",
+    "category": "team_prediction",
+    "team": "Mexico",
+    "text": "Mexico's World Cup story always has noise, pressure, and one match that feels massive. My early Mexico 2026 take: they have a real path if the knockout draw is kind. #WorldCup2026 #Football",
+    "image": "/social/images/mexico-prediction.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
+  },
+  {
+    "date": "2026-07-10",
+    "platform": "x",
     "rhythm": "daily X post",
-    "category": "product_light",
+    "category": "fan_life",
     "team": null,
-    "text": "Working on a World Cup 2026 fan site for people who love brackets, fixtures, and arguing about dark horses before the draw even behaves. #WorldCup2026",
-    "image": null,
-    "url": "https://worldcup.bluet.cc"
+    "text": "Group-stage football feels calm until the underdog scores first. #WorldCup2026 #Football",
+    "image": "/social/images/topic-fan-life.png",
+    "url": "https://worldcup.bluet.cc",
+    "review_checklist": [
+      "No politics, religion, hate speech, or personal attacks",
+      "Question invites football discussion",
+      "Post is edited to sound human before publishing"
+    ]
   }
 ]

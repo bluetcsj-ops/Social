@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>世界杯 2026 社媒草稿助手</title>
+  <title>世界杯 2026 增长内容助手</title>
   <style>
     :root {
       --ink: #17202a;
@@ -13,7 +13,7 @@
       --page: #f5f7f8;
       --blue: #1769aa;
       --green: #15845c;
-      --gold: #f1b82d;
+      --gold: #d69b16;
       --red: #d94747;
     }
 
@@ -23,7 +23,7 @@
       margin: 0;
       color: var(--ink);
       background: var(--page);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
     }
 
     header {
@@ -32,40 +32,23 @@
       justify-content: space-between;
       gap: 24px;
       padding: 22px clamp(18px, 4vw, 48px);
-      background: #ffffff;
+      background: #fff;
       border-bottom: 1px solid var(--line);
       position: sticky;
       top: 0;
       z-index: 3;
     }
 
-    h1 {
-      margin: 0;
-      font-size: clamp(22px, 3vw, 34px);
-      letter-spacing: 0;
-    }
-
-    .summary {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      color: var(--muted);
-      font-size: 14px;
-      justify-content: flex-end;
-    }
-
-    .pill {
-      border: 1px solid var(--line);
-      background: #f9fbfc;
-      border-radius: 999px;
-      padding: 8px 12px;
-      white-space: nowrap;
-    }
+    h1, h2, h3, p { margin: 0; }
+    h1 { font-size: clamp(23px, 3vw, 34px); letter-spacing: 0; }
+    h2 { font-size: 20px; }
+    h3 { font-size: 15px; }
+    p { color: var(--muted); line-height: 1.5; }
 
     main {
       display: grid;
-      grid-template-columns: 280px minmax(0, 1fr);
-      min-height: calc(100vh - 78px);
+      grid-template-columns: 320px minmax(0, 1fr);
+      min-height: calc(100vh - 82px);
     }
 
     aside {
@@ -74,22 +57,48 @@
       background: #fbfcfd;
     }
 
-    .filters {
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: 0 8px 22px rgba(25, 36, 50, 0.055);
+      display: grid;
+      gap: 14px;
+    }
+
+    .sidebar {
       display: grid;
       gap: 14px;
       position: sticky;
-      top: 94px;
+      top: 100px;
     }
+
+    .content {
+      padding: 24px clamp(18px, 4vw, 46px);
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .toolbar, .row-actions, .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .toolbar { justify-content: flex-end; }
 
     label {
       display: grid;
       gap: 6px;
       font-size: 13px;
       color: var(--muted);
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    select, input {
+    select, input, textarea {
       width: 100%;
       border: 1px solid var(--line);
       background: white;
@@ -99,113 +108,16 @@
       font: inherit;
     }
 
-    .content {
-      padding: 24px clamp(18px, 4vw, 46px);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 18px;
-      align-items: start;
-    }
-
-    article {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 8px 22px rgba(25, 36, 50, 0.06);
-    }
-
-    article.used {
-      opacity: 0.58;
-    }
-
-    .preview {
-      aspect-ratio: 1200 / 630;
-      width: 100%;
-      background: #e8edf1;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .preview img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .preview span {
-      color: var(--muted);
-      font-size: 14px;
-      padding: 18px;
-      text-align: center;
-    }
-
-    .card-body {
-      padding: 16px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-      font-size: 12px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0;
-      font-weight: 800;
-    }
-
-    .tag {
-      border-radius: 999px;
-      padding: 5px 8px;
-      background: #edf3f8;
-      color: #205d86;
-    }
-
     textarea {
-      width: 100%;
-      min-height: 152px;
+      min-height: 138px;
       resize: vertical;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 12px;
-      font: inherit;
       line-height: 1.45;
-      color: var(--ink);
       background: #fbfcfd;
     }
 
-    .actions {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-    }
-
-    .image-actions {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 8px;
-    }
-
-    .image-note {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.45;
-    }
-
-    button, a.action {
+    button, a.button {
       border: 1px solid var(--line);
-      background: #ffffff;
+      background: #fff;
       color: var(--ink);
       min-height: 40px;
       border-radius: 8px;
@@ -213,18 +125,248 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 9px 10px;
+      padding: 9px 12px;
       cursor: pointer;
       font: inherit;
       font-weight: 800;
       text-decoration: none;
     }
 
-    button.primary { background: var(--blue); color: #ffffff; border-color: var(--blue); }
-    button.image-copy { background: var(--green); color: #ffffff; border-color: var(--green); }
-    a.x { background: #111820; color: #ffffff; border-color: #111820; }
-    a.facebook { background: #1769aa; color: #ffffff; border-color: #1769aa; }
-    button.used-toggle[data-used="true"] { background: var(--green); color: #ffffff; border-color: var(--green); }
+    button.primary, a.primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+    button.success { background: var(--green); color: #fff; border-color: var(--green); }
+    a.x { background: #111820; color: #fff; border-color: #111820; }
+    a.facebook { background: #1769aa; color: #fff; border-color: #1769aa; }
+
+    .tag {
+      border-radius: 999px;
+      padding: 6px 9px;
+      background: #edf3f8;
+      color: #205d86;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .tag.green { background: #e8f5ef; color: #146346; }
+    .tag.gold { background: #fff5d9; color: #7d5508; }
+    .tag.red { background: #fae8e8; color: #8b2929; }
+
+    .hero-card {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.8fr) minmax(460px, 1.2fr);
+      gap: 0;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .preview {
+      min-height: 360px;
+      background: #f6f9fc;
+      display: grid;
+      align-content: start;
+      gap: 12px;
+      padding: 18px;
+      border-right: 1px solid var(--line);
+    }
+
+    .preview h3 {
+      font-size: 18px;
+    }
+
+    .preview .zh-copy {
+      color: var(--ink);
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    .preview .hint {
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .draft-body {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .featured-image {
+      grid-column: 1 / -1;
+      border-top: 1px solid var(--line);
+      padding: 16px;
+      background: #fbfcfd;
+    }
+
+    .featured-image img {
+      display: block;
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+    }
+
+    .notice {
+      border-left: 4px solid var(--gold);
+      padding: 12px;
+      background: #fff9e9;
+      color: #644506;
+      border-radius: 6px;
+    }
+
+    .notice p { color: #644506; }
+
+    .metric-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #edf1f4;
+    }
+
+    .metric:last-child { border-bottom: 0; padding-bottom: 0; }
+    .metric strong { white-space: nowrap; }
+
+    .growth-grid {
+      display: grid;
+      grid-template-columns: minmax(320px, 1.08fr) minmax(280px, 0.92fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .growth-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .growth-number {
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1;
+      font-weight: 900;
+      color: var(--green);
+    }
+
+    .growth-kpis {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .kpi {
+      border: 1px solid #edf1f4;
+      border-radius: 8px;
+      padding: 12px;
+      background: #fbfcfd;
+      min-height: 82px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .kpi strong {
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .chart {
+      height: 190px;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+
+    .line-chart {
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: visible;
+    }
+
+    .line-chart .axis {
+      stroke: #d8e0e7;
+      stroke-width: 1;
+    }
+
+    .line-chart .curve {
+      fill: none;
+      stroke: #1769aa;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .line-chart .area {
+      fill: rgba(23, 105, 170, 0.12);
+    }
+
+    .line-chart text {
+      font-size: 11px;
+      fill: var(--muted);
+    }
+
+    .assistant-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .assistant-item {
+      border-left: 4px solid var(--blue);
+      padding: 10px 12px;
+      background: #f6f9fc;
+      border-radius: 6px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .assistant-item strong {
+      font-size: 14px;
+    }
+
+    .x-opportunities {
+      display: grid;
+      gap: 10px;
+    }
+
+    .x-opportunity {
+      border: 1px solid #edf1f4;
+      border-radius: 8px;
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+      background: #fbfcfd;
+    }
+
+    .x-opportunity p {
+      font-size: 13px;
+    }
+
+    .x-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .x-post-text {
+      color: var(--ink);
+      line-height: 1.45;
+    }
+
+    .x-search-fallback {
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      margin-top: 4px;
+      display: grid;
+      gap: 8px;
+    }
 
     .empty {
       display: none;
@@ -233,7 +375,7 @@
       padding: 40px;
       color: var(--muted);
       text-align: center;
-      background: #ffffff;
+      background: #fff;
     }
 
     .toast {
@@ -251,128 +393,458 @@
       z-index: 5;
     }
 
-    .toast.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .toast.show { opacity: 1; transform: translateY(0); }
 
-    @media (max-width: 820px) {
+    @media (max-width: 920px) {
       header { align-items: flex-start; flex-direction: column; }
-      .summary { justify-content: flex-start; }
+      .toolbar { justify-content: flex-start; }
       main { grid-template-columns: 1fr; }
       aside { border-right: 0; border-bottom: 1px solid var(--line); }
-      .filters { position: static; grid-template-columns: 1fr 1fr; }
-      .filters label:first-child { grid-column: 1 / -1; }
-    }
-
-    @media (max-width: 520px) {
-      .filters { grid-template-columns: 1fr; }
-      .actions { grid-template-columns: 1fr; }
-      .image-actions { grid-template-columns: 1fr; }
-      .grid { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      .hero-card { grid-template-columns: 1fr; }
+      .growth-grid { grid-template-columns: 1fr; }
+      .growth-kpis { grid-template-columns: 1fr; }
+      .preview { border-right: 0; border-bottom: 1px solid var(--line); min-height: 260px; }
     }
   </style>
 </head>
 <body>
   <header>
     <div>
-      <h1>世界杯 2026 社媒草稿助手</h1>
+      <h1 data-i18n="title">世界杯 2026 增长内容助手</h1>
+      <p data-i18n="subtitle">每天只推荐一条最值得发的内容，采用后进入增长后台学习，不再重复出现。</p>
     </div>
-    <div class="summary" id="summary"></div>
+    <div class="toolbar">
+      <button id="language" type="button">EN</button>
+      <a class="button primary" href="admin/growth-dashboard.html" data-i18n="dashboard">增长后台</a>
+    </div>
   </header>
 
   <main>
     <aside>
-      <div class="filters">
-        <label>
-          搜索
-          <input id="search" type="search" placeholder="球队、分类、正文">
-        </label>
-        <label>
-          平台
-          <select id="platform">
-            <option value="all">全部平台</option>
-            <option value="x">X</option>
-            <option value="facebook">Facebook</option>
-            <option value="discord">Discord / Telegram</option>
-          </select>
-        </label>
-        <label>
-          分类
-          <select id="category">
-            <option value="all">全部分类</option>
-            <option value="team_prediction">球队预测</option>
-            <option value="schedule">赛程讨论</option>
-            <option value="poll">投票话题</option>
-            <option value="product_light">轻量推广</option>
-          </select>
-        </label>
-        <label>
-          状态
-          <select id="status">
-            <option value="all">全部草稿</option>
-            <option value="unused">未使用</option>
-            <option value="used">已使用</option>
-          </select>
-        </label>
+      <div class="sidebar">
+        <section class="panel">
+          <h2 data-i18n="settings">推荐设置</h2>
+          <label>
+            <span data-i18n="platform">平台</span>
+            <select id="platform">
+              <option value="all" data-i18n="allPlatforms">全部平台</option>
+              <option value="x">X / Twitter</option>
+              <option value="facebook">Facebook</option>
+              <option value="discord">Discord / Telegram</option>
+            </select>
+          </label>
+          <label>
+            <span data-i18n="category">内容类型</span>
+            <select id="category">
+              <option value="all" data-i18n="allCategories">全部类型</option>
+              <option value="team_prediction" data-i18n="team_prediction">冠军预测</option>
+              <option value="dark_horse" data-i18n="dark_horse">黑马讨论</option>
+              <option value="funny" data-i18n="funny">足球搞笑</option>
+              <option value="fan_life" data-i18n="fan_life">球迷日常</option>
+              <option value="hot_take" data-i18n="hot_take">足球争议观点</option>
+              <option value="poll" data-i18n="poll">投票帖</option>
+              <option value="schedule" data-i18n="schedule">赛程讨论</option>
+              <option value="product_light" data-i18n="product_light">网站轻推广</option>
+            </select>
+          </label>
+          <label>
+            <span data-i18n="search">关键词</span>
+            <input id="search" type="search" placeholder="Brazil, Japan, poll">
+          </label>
+          <button id="next" type="button" data-i18n="next">换一条精选</button>
+        </section>
+
+        <section class="panel">
+          <h2 data-i18n="todayLogic">今日推荐逻辑</h2>
+          <div class="metric-list" id="logic"></div>
+        </section>
+
+        <section class="panel">
+          <h2>X 热门回帖机会</h2>
+          <p>按真实互动数据排序，只显示前 5 条；人工点开回复，不自动发帖。</p>
+          <div class="x-opportunities" id="x-opportunities"></div>
+        </section>
       </div>
     </aside>
 
     <section class="content">
-      <div class="grid" id="drafts"></div>
-      <div class="empty" id="empty">没有符合筛选条件的草稿。</div>
+      <section class="growth-grid">
+        <article class="panel">
+          <div class="growth-head">
+            <div>
+              <h2 data-i18n="growthTitle">今日增长气氛</h2>
+              <p id="growth-source">正在读取增长数据...</p>
+            </div>
+            <div>
+              <div class="growth-number" id="growth-number">0</div>
+              <p data-i18n="pageViewsLabel">过去 24 小时浏览量</p>
+            </div>
+          </div>
+          <div class="growth-kpis">
+            <div class="kpi"><p data-i18n="usersLabel">用户</p><strong id="growth-users">0</strong></div>
+            <div class="kpi"><p data-i18n="trafficLiftLabel">流量变化</p><strong id="growth-change">0%</strong></div>
+            <div class="kpi"><p data-i18n="topCountryLabel">最热国家</p><strong id="growth-country">-</strong></div>
+          </div>
+          <div class="chart" id="growth-chart" style="--bars: 1"></div>
+        </article>
+
+        <article class="panel">
+          <div>
+            <h2 data-i18n="assistantTitle">网站管理助手建议</h2>
+            <p data-i18n="assistantSubtitle">我会把流量、热门页面和内容反馈转成下一步行动。</p>
+          </div>
+          <div class="assistant-list" id="assistant-advice"></div>
+        </article>
+      </section>
+
+      <div class="notice">
+        <p data-i18n="notice">这是半自动增长工作流：系统推荐，你人工审核和发布；不会自动刷屏或批量发帖。</p>
+      </div>
+
+      <article class="panel hero-card" id="featured"></article>
+      <div class="empty" id="empty" data-i18n="empty">当前筛选下没有新的每日精选。已采用的内容不会重复出现。</div>
     </section>
   </main>
 
   <div class="toast" id="toast">已复制</div>
 
+  <script src="admin/growth-data.js"></script>
+  <script src="social/x-trending-posts.js"></script>
   <script src="social/social-dashboard-data.js"></script>
   <script>
-    const sources = [
-      "social/drafts/x-posts.json",
-      "social/drafts/facebook-posts.json",
-      "social/drafts/discord-posts.json"
-    ];
-    const platformNames = {
-      x: "X",
-      facebook: "Facebook",
-      discord: "Discord / Telegram"
+    const i18n = {
+      zh: {
+        title: "世界杯 2026 增长内容助手",
+        subtitle: "每天只推荐一条最值得发的内容，采用后进入增长后台学习，不再重复出现。",
+        dashboard: "增长后台",
+        settings: "推荐设置",
+        platform: "平台",
+        allPlatforms: "全部平台",
+        category: "内容类型",
+        allCategories: "全部类型",
+        team_prediction: "冠军预测",
+        dark_horse: "黑马讨论",
+        funny: "足球搞笑",
+        fan_life: "球迷日常",
+        hot_take: "足球争议观点",
+        poll: "投票帖",
+        schedule: "赛程讨论",
+        product_light: "网站轻推广",
+        search: "关键词",
+        next: "换一条精选",
+        todayLogic: "今日推荐逻辑",
+        notice: "这是半自动增长工作流：系统推荐，你人工审核和发布；不会自动刷屏或批量发帖。",
+        empty: "当前筛选下没有新的每日精选。已采用的内容不会重复出现。",
+        copyDraft: "复制文案",
+        openPlatform: "打开平台",
+        adopt: "采用并记录",
+        copyUrl: "复制追踪链接",
+        copyImage: "复制图片",
+        download: "下载图片",
+        review: "人工审核",
+        reason: "推荐原因",
+        noRepeat: "采用后不再推荐",
+        selected: "已采用，并写入增长后台",
+        copied: "已复制",
+        imageCopied: "图片已复制",
+        imagePathCopied: "图片路径已复制",
+        goal: "目标",
+        score: "推荐分",
+        history: "历史反馈",
+        remaining: "剩余候选",
+        used: "已采用"
+        ,
+        growthTitle: "今日增长气氛",
+        pageViewsLabel: "过去 24 小时浏览量",
+        usersLabel: "用户",
+        trafficLiftLabel: "流量变化",
+        topCountryLabel: "最热国家",
+        assistantTitle: "网站管理助手建议",
+        assistantSubtitle: "我会把流量、热门页面和内容反馈转成下一步行动。"
+      },
+      en: {
+        title: "World Cup 2026 Growth Content Agent",
+        subtitle: "One daily featured post. Once adopted, it becomes growth data and will not appear again.",
+        dashboard: "Growth Dashboard",
+        settings: "Recommendation Settings",
+        platform: "Platform",
+        allPlatforms: "All platforms",
+        category: "Content type",
+        allCategories: "All categories",
+        team_prediction: "Champion prediction",
+        dark_horse: "Dark horse",
+        funny: "Funny football",
+        fan_life: "Fan life",
+        hot_take: "Football hot take",
+        poll: "Poll",
+        schedule: "Schedule discussion",
+        product_light: "Light website promo",
+        search: "Keyword",
+        next: "Show another pick",
+        todayLogic: "Recommendation Logic",
+        notice: "Semi-automated workflow: the system recommends, you review and publish manually. No mass posting.",
+        empty: "No new daily pick for these filters. Adopted items will not reappear.",
+        copyDraft: "Copy Draft",
+        openPlatform: "Open Platform",
+        adopt: "Adopt and Record",
+        copyUrl: "Copy Tracking URL",
+        copyImage: "Copy Image",
+        download: "Download",
+        review: "Human review",
+        reason: "Reason",
+        noRepeat: "Won't repeat after adoption",
+        selected: "Adopted and saved to Growth Dashboard",
+        copied: "Copied",
+        imageCopied: "Image copied",
+        imagePathCopied: "Image path copied",
+        goal: "Goal",
+        score: "Score",
+        history: "Feedback",
+        remaining: "Remaining",
+        used: "Adopted",
+        growthTitle: "Growth Momentum",
+        pageViewsLabel: "Page views in the last 24 hours",
+        usersLabel: "Users",
+        trafficLiftLabel: "Traffic change",
+        topCountryLabel: "Top country",
+        assistantTitle: "Site Manager Suggestions",
+        assistantSubtitle: "I turn traffic, top pages, and content feedback into next actions."
+      }
     };
-    const categoryNames = {
-      team_prediction: "球队预测",
-      schedule: "赛程讨论",
-      poll: "投票话题",
-      product_light: "轻量推广"
+
+    const platformNames = { x: "X / Twitter", facebook: "Facebook", discord: "Discord / Telegram" };
+    const categoryBase = { funny: 46, fan_life: 44, poll: 31, hot_take: 29, dark_horse: 27, team_prediction: 20, schedule: 22, product_light: 10 };
+    const countryNames = {
+      NL: "荷兰",
+      SG: "新加坡",
+      US: "美国",
+      CN: "中国",
+      AD: "安道尔",
+      CH: "瑞士",
+      HK: "中国香港",
+      GB: "英国",
+      BR: "巴西",
+      AR: "阿根廷",
+      FR: "法国",
+      JP: "日本",
+      MX: "墨西哥",
+      DE: "德国",
+      ES: "西班牙",
+      PT: "葡萄牙"
     };
     const state = {
+      lang: localStorage.getItem("wc-language") || "zh",
       drafts: [],
-      used: JSON.parse(localStorage.getItem("worldcup-social-used") || "{}")
+      used: JSON.parse(localStorage.getItem("worldcup-social-used") || "{}"),
+      records: JSON.parse(localStorage.getItem("wc-growth-selected-posts") || "[]"),
+      offset: 0,
+      current: null
     };
 
     const els = {
-      grid: document.querySelector("#drafts"),
+      featured: document.querySelector("#featured"),
       empty: document.querySelector("#empty"),
-      summary: document.querySelector("#summary"),
-      search: document.querySelector("#search"),
+      logic: document.querySelector("#logic"),
       platform: document.querySelector("#platform"),
       category: document.querySelector("#category"),
-      status: document.querySelector("#status"),
+      search: document.querySelector("#search"),
+      next: document.querySelector("#next"),
+      language: document.querySelector("#language"),
       toast: document.querySelector("#toast")
+      ,
+      growthSource: document.querySelector("#growth-source"),
+      growthNumber: document.querySelector("#growth-number"),
+      growthUsers: document.querySelector("#growth-users"),
+      growthChange: document.querySelector("#growth-change"),
+      growthCountry: document.querySelector("#growth-country"),
+      growthChart: document.querySelector("#growth-chart"),
+      assistantAdvice: document.querySelector("#assistant-advice"),
+      xOpportunities: document.querySelector("#x-opportunities")
     };
 
-    function idFor(draft, index) {
-      return `${draft.platform}:${draft.category}:${draft.team || "general"}:${index}`;
-    }
-
+    function t(key) { return i18n[state.lang][key] || key; }
+    function todayKey() { return new Date().toISOString().slice(0, 10); }
+    function idFor(draft, index) { return `${draft.platform}:${draft.category}:${draft.team || "general"}:${index}`; }
+    function publicUrl(draft) { return draft.url || "https://worldcup.bluet.cc"; }
+    function trackingUrl(draft) { return draft.tracking_url || draft.url || "https://worldcup.bluet.cc"; }
     function textWithUrl(draft) {
-      return draft.url && !draft.text.includes(draft.url) ? `${draft.text}\n${draft.url}` : draft.text;
+      const url = publicUrl(draft);
+      return url && !draft.text.includes(url) ? `${draft.text}\n${url}` : draft.text;
+    }
+    function zhText(draft) {
+      if (draft.text_zh) return draft.text_zh;
+      const type = categoryZh(draft.category);
+      const team = draft.team ? ` / ${draft.team}` : "";
+      return `中文参考：${type}${team}。这条英文文案用于引发足球讨论，复制发布时仍使用右侧英文原文。`;
+    }
+    function normalize(value) { return String(value || "").toLowerCase(); }
+    function engagementScore(record) {
+      return (record.likes || 0) + (record.replies || 0) * 3 + (record.shares || 0) * 5 + (record.linkClicks || 0) * 4 + (record.bookmarks || 0) * 2;
+    }
+    function contentType(draft) { return t(draft.category); }
+    function categoryZh(category) { return i18n.zh[category] || category; }
+    function fmt(value) { return new Intl.NumberFormat(state.lang === "zh" ? "zh-CN" : "en-US").format(Number(value) || 0); }
+    function countryLabel(value) {
+      if (state.lang !== "zh") return value || "-";
+      return countryNames[value] || value || "-";
+    }
+    function isContentPage(page) {
+      const raw = String(page?.path || page?.page || "").split("?")[0].toLowerCase();
+      if (!raw || raw === "/" || String(page?.page || "").toLowerCase() === "homepage") return true;
+      const ignoredPrefixes = ["/assets/", "/cdn-cgi/", "/images/", "/social/", "/admin/", "/favicon"];
+      const ignoredSuffixes = [".js", ".css", ".png", ".jpg", ".jpeg", ".webp", ".svg", ".ico", ".json", ".map", ".woff", ".woff2", ".ttf"];
+      return !ignoredPrefixes.some((prefix) => raw.startsWith(prefix))
+        && !ignoredSuffixes.some((suffix) => raw.endsWith(suffix));
+    }
+    function signedPct(value) {
+      const number = Number(value) || 0;
+      if (state.lang !== "zh") return `${number > 0 ? "+" : ""}${number}%`;
+      if (number > 0) return `增长 ${number}%`;
+      if (number < 0) return `下降 ${Math.abs(number)}%`;
+      return "持平 0%";
     }
 
-    function composeUrl(draft, text) {
-      const encodedText = encodeURIComponent(text);
-      if (draft.platform === "x") return `https://twitter.com/intent/tweet?text=${encodedText}`;
-      if (draft.platform === "facebook") return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(draft.url || "https://worldcup.bluet.cc")}&quote=${encodedText}`;
-      return draft.url || "https://worldcup.bluet.cc";
+    function buildWeeklyTimeline(data) {
+      const direct = Array.isArray(data.dailyUsers) ? data.dailyUsers : [];
+      if (direct.length) {
+        return direct.map((item) => ({
+          time: item.date || item.time || item.label || "",
+          users: Number(item.users) || 0
+        })).slice(-7);
+      }
+
+      const users = Number(data.traffic?.users) || 0;
+      const growth = Number(data.traffic?.trafficGrowthPct) || 0;
+      const start = Math.max(0, Math.round(users / ((1 + growth / 100) || 1)));
+      const now = new Date();
+      return Array.from({ length: 7 }, (_, index) => {
+        const ratio = index / 6;
+        const smooth = ratio * ratio * (3 - 2 * ratio);
+        const value = Math.round(start + (users - start) * smooth);
+        const date = new Date(now.getTime() - (6 - index) * 24 * 60 * 60 * 1000);
+        return { time: `${date.getMonth() + 1}/${date.getDate()}`, users: value };
+      });
+    }
+
+    function lineChart(points) {
+      if (!points.length) {
+        return `<div class="bar-label">${state.lang === "zh" ? "暂无用户曲线数据" : "No user timeline yet"}</div>`;
+      }
+      const width = 640;
+      const height = 190;
+      const padX = 28;
+      const padTop = 18;
+      const padBottom = 34;
+      const max = Math.max(...points.map((item) => item.users), 1);
+      const min = Math.min(...points.map((item) => item.users), 0);
+      const span = Math.max(1, max - min);
+      const coords = points.map((item, index) => {
+        const x = padX + index * ((width - padX * 2) / Math.max(1, points.length - 1));
+        const y = padTop + (1 - (item.users - min) / span) * (height - padTop - padBottom);
+        return { ...item, x, y };
+      });
+      const path = coords.map((item, index) => `${index ? "L" : "M"}${item.x.toFixed(1)},${item.y.toFixed(1)}`).join(" ");
+      const area = `${path} L${coords[coords.length - 1].x.toFixed(1)},${height - padBottom} L${coords[0].x.toFixed(1)},${height - padBottom} Z`;
+      return `
+        <svg class="line-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="7-day user growth curve">
+          <line class="axis" x1="${padX}" y1="${height - padBottom}" x2="${width - padX}" y2="${height - padBottom}"></line>
+          <path class="area" d="${area}"></path>
+          <path class="curve" d="${path}"></path>
+          ${coords.map((item, index) => index % 2 === 0 || index === coords.length - 1 ? `<text x="${item.x}" y="${height - 10}" text-anchor="middle">${item.time}</text>` : "").join("")}
+          <text x="${padX}" y="14">${state.lang === "zh" ? "近 7 天用户" : "Users in last 7 days"}</text>
+          <text x="${width - padX}" y="14" text-anchor="end">${fmt(max)}</text>
+        </svg>
+      `;
+    }
+
+    const xSearchFallbacks = [
+      {
+        title: "World Cup 2026",
+        query: '"World Cup 2026" OR #WorldCup2026 lang:en',
+        angle: "搜索真实热门讨论，适合找冠军、赛程、抽签相关帖子。"
+      },
+      {
+        title: "Football funny / memes",
+        query: '(football OR soccer) (funny OR meme) lang:en',
+        angle: "找轻松足球梗，适合先参与评论，不急着带链接。"
+      },
+      {
+        title: "Brazil Argentina France England",
+        query: '(Brazil OR Argentina OR France OR England) "World Cup" lang:en',
+        angle: "找强队争论，适合回复冠军、黑马和淘汰赛观点。"
+      },
+      {
+        title: "FIFA World Cup",
+        query: '"FIFA World Cup" 2026 lang:en',
+        angle: "找官方话题周边讨论，适合围绕赛程和球队提问。"
+      },
+      {
+        title: "World Cup predictions",
+        query: '("World Cup prediction" OR "World Cup predictions") lang:en',
+        angle: "找预测讨论，适合邀请对方补充冠军或黑马。"
+      }
+    ];
+
+    function xSearchUrl(query) {
+      return `https://x.com/search?q=${encodeURIComponent(query)}&src=typed_query&f=top`;
+    }
+
+    function renderXSearchFallbacks() {
+      return `
+        <div class="x-search-fallback">
+          <strong>备用搜索入口</strong>
+          ${xSearchFallbacks.map((item, index) => `
+            <div class="x-opportunity">
+              <strong>${index + 1}. ${item.title}</strong>
+              <p>${item.angle}</p>
+              <a class="button x" href="${xSearchUrl(item.query)}" target="_blank" rel="noopener">打开 X 搜索</a>
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function renderXOpportunities() {
+      if (!els.xOpportunities) return;
+      const payload = window.X_TRENDING_POSTS || { posts: [] };
+      const posts = (payload.posts || []).slice().sort((a, b) => (b.score || 0) - (a.score || 0)).slice(0, 5);
+      if (!posts.length) {
+        els.xOpportunities.innerHTML = `
+          <div class="x-opportunity">
+            <strong>还没有同步到真实热门帖</strong>
+            <p>没有 Bearer Token 时，可以用下面的搜索入口手动找帖子，或把真实帖子数据填进 social\\x-trending-manual.json 后导入排序。</p>
+          </div>
+          ${renderXSearchFallbacks()}
+        `;
+        return;
+      }
+      els.xOpportunities.innerHTML = posts.map((item, index) => `
+        <div class="x-opportunity">
+          <strong>${index + 1}. ${item.author || item.username || "X post"}</strong>
+          <div class="x-meta">
+            <span>热度 ${fmt(item.score || 0)}</span>
+            <span>赞 ${fmt(item.likes || 0)}</span>
+            <span>回复 ${fmt(item.replies || 0)}</span>
+            <span>转发 ${fmt(item.reposts || 0)}</span>
+          </div>
+          <p class="x-post-text">${item.text || ""}</p>
+          <a class="button x" href="${item.url}" target="_blank" rel="noopener">打开原帖回复</a>
+        </div>
+      `).join("") + renderXSearchFallbacks();
+    }
+
+    function saveUsed() {
+      localStorage.setItem("worldcup-social-used", JSON.stringify(state.used));
+      localStorage.setItem("wc-growth-selected-posts", JSON.stringify(state.records));
+    }
+
+    function applyLanguage() {
+      document.documentElement.lang = state.lang === "zh" ? "zh-CN" : "en";
+      document.querySelectorAll("[data-i18n]").forEach((node) => {
+        node.textContent = t(node.dataset.i18n);
+      });
+      els.language.textContent = state.lang === "zh" ? "EN" : "中文";
     }
 
     function showToast(message) {
@@ -381,150 +853,305 @@
       window.setTimeout(() => els.toast.classList.remove("show"), 1300);
     }
 
-    function saveUsed() {
-      localStorage.setItem("worldcup-social-used", JSON.stringify(state.used));
-    }
-
     async function copyText(text) {
       await navigator.clipboard.writeText(text);
-      showToast("已复制");
+      showToast(t("copied"));
     }
 
     async function copyImage(imagePath) {
       if (!window.ClipboardItem || !navigator.clipboard?.write) {
         await copyText(imagePath);
-        showToast("当前浏览器不支持复制图片，已复制图片路径");
+        showToast(t("imagePathCopied"));
         return;
       }
-
       try {
         const response = await fetch(imagePath);
         const blob = await response.blob();
-        await navigator.clipboard.write([
-          new ClipboardItem({ [blob.type]: blob })
-        ]);
-        showToast("图片已复制，可到发帖框粘贴");
+        await navigator.clipboard.write([new ClipboardItem({ [blob.type]: blob })]);
+        showToast(t("imageCopied"));
       } catch (error) {
         await copyText(imagePath);
-        showToast("图片复制受限，已复制图片路径");
+        showToast(t("imagePathCopied"));
       }
     }
 
-    function renderSummary(list) {
-      const total = state.drafts.length;
-      const used = Object.values(state.used).filter(Boolean).length;
-      const visible = list.length;
-      els.summary.innerHTML = `
-        <span class="pill">共 ${total} 条草稿</span>
-        <span class="pill">已使用 ${used} 条</span>
-        <span class="pill">当前显示 ${visible} 条</span>
+    function composeUrl(draft, text) {
+      const encodedText = encodeURIComponent(text);
+      if (draft.platform === "x") return `https://twitter.com/intent/tweet?text=${encodedText}`;
+      if (draft.platform === "facebook") return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(publicUrl(draft))}&quote=${encodedText}`;
+      return publicUrl(draft);
+    }
+
+    function averageBy(field, value) {
+      const matches = state.records.filter((record) => record[field] === value && engagementScore(record) > 0);
+      if (!matches.length) return 0;
+      return matches.reduce((sum, record) => sum + engagementScore(record), 0) / matches.length;
+    }
+
+    function rank(entry) {
+      const draft = entry.draft;
+      const categoryLift = averageBy("category", draft.category);
+      const teamLift = draft.team ? averageBy("team", draft.team) : 0;
+      const platformLift = averageBy("platform", draft.platform);
+      const base = categoryBase[draft.category] || 15;
+      return Math.round(base + categoryLift / 18 + teamLift / 16 + platformLift / 24);
+    }
+
+    function reason(entry) {
+      const draft = entry.draft;
+      const categoryLift = averageBy("category", draft.category);
+      const teamLift = draft.team ? averageBy("team", draft.team) : 0;
+      if (teamLift > 0 || categoryLift > 0) {
+        return state.lang === "zh"
+          ? `根据已记录反馈，${draft.team || categoryZh(draft.category)}相关内容的互动表现更好，所以今天优先推荐。`
+          : `Past feedback favors ${draft.team || draft.category}, so this pick is prioritized today.`;
+      }
+      return state.lang === "zh"
+        ? "暂无足够历史反馈，我先优先推荐更容易引发回复的轻松球迷内容；发布后记录表现，明天会继续调整。"
+        : "Not enough feedback yet, so I am prioritizing lighter fan conversation that is more likely to earn replies. Record the result after posting and tomorrow's pick will adjust.";
+    }
+
+    function getRanked() {
+      const q = normalize(els.search.value);
+      const platform = els.platform.value;
+      const category = els.category.value;
+      return state.drafts
+        .filter((entry) => !state.used[entry.id])
+        .filter((entry) => platform === "all" || entry.draft.platform === platform)
+        .filter((entry) => category === "all" || entry.draft.category === category)
+        .filter((entry) => {
+          const draft = entry.draft;
+          return !q || normalize(`${draft.platform} ${draft.category} ${draft.team || ""} ${draft.text}`).includes(q);
+        })
+        .map((entry) => ({ ...entry, score: rank(entry) }))
+        .sort((a, b) => b.score - a.score);
+    }
+
+    function renderLogic(ranked) {
+      const usedCount = Object.values(state.used).filter(Boolean).length;
+      const historyCount = state.records.length;
+      els.logic.innerHTML = `
+        <div class="metric"><span>${t("remaining")}</span><strong>${ranked.length}</strong></div>
+        <div class="metric"><span>${t("used")}</span><strong>${usedCount}</strong></div>
+        <div class="metric"><span>${t("history")}</span><strong>${historyCount}</strong></div>
+        <div class="metric"><span>${t("noRepeat")}</span><strong>ON</strong></div>
       `;
     }
 
-    function getFiltered() {
-      const q = els.search.value.trim().toLowerCase();
-      const platform = els.platform.value;
-      const category = els.category.value;
-      const status = els.status.value;
+    function getGrowthData() {
+      return window.GROWTH_DASHBOARD_DATA || {
+        generatedAt: "",
+        source: "",
+        traffic: { users: 0, pageViews: 0, trafficGrowthPct: 0 },
+        topPages: [],
+        countries: [],
+        referrers: []
+      };
+    }
 
-      return state.drafts.filter((entry) => {
-        const draft = entry.draft;
-        const haystack = `${draft.platform} ${draft.category} ${draft.team || ""} ${draft.text}`.toLowerCase();
-        const used = Boolean(state.used[entry.id]);
-        return (!q || haystack.includes(q))
-          && (platform === "all" || draft.platform === platform)
-          && (category === "all" || draft.category === category)
-          && (status === "all" || (status === "used" ? used : !used));
-      });
+    function renderGrowth() {
+      const data = getGrowthData();
+      const traffic = data.traffic || {};
+      const topPages = (data.topPages || []).filter(isContentPage).slice(0, 7);
+      const topCountry = (data.countries || [])[0];
+      const bestPage = topPages[0];
+      const topReferrer = (data.referrers || [])[0];
+      const pageViews = Number(traffic.pageViews) || 0;
+      const users = Number(traffic.users) || 0;
+      const change = Number(traffic.trafficGrowthPct) || 0;
+
+      els.growthNumber.textContent = fmt(pageViews);
+      els.growthUsers.textContent = fmt(users);
+      els.growthChange.textContent = signedPct(change);
+      els.growthChange.style.color = change >= 0 ? "var(--green)" : "var(--red)";
+      els.growthCountry.textContent = topCountry ? countryLabel(topCountry.country || topCountry.name) : "-";
+      els.growthSource.textContent = state.lang === "zh"
+        ? `${data.source || "本地增长数据"} · 更新：${data.generatedAt || "未知"}`
+        : `${data.source || "Local growth data"} · Updated: ${data.generatedAt || "unknown"}`;
+
+      els.growthChart.innerHTML = lineChart(buildWeeklyTimeline(data));
+
+      const advice = buildAssistantAdvice(data, bestPage, topCountry, topReferrer, change);
+      els.assistantAdvice.innerHTML = advice.map((item) => `
+        <div class="assistant-item">
+          <strong>${item.title}</strong>
+          <p>${item.body}</p>
+        </div>
+      `).join("");
+    }
+
+    function buildAssistantAdvice(data, bestPage, topCountry, topReferrer, change) {
+      if (state.lang !== "zh") {
+        return [
+          {
+            title: change >= 0 ? "Momentum is alive" : "Traffic dipped, but the signal is useful",
+            body: change >= 0
+              ? `Traffic is up ${change}%. Keep today's post tied to the highest-intent page.`
+              : `Traffic is down ${Math.abs(change)}%. Use a stronger debate hook and point it to the top page.`
+          },
+          {
+            title: "Double down on the page that already works",
+            body: bestPage ? `${bestPage.page} leads with ${fmt(bestPage.views)} views. Create content that naturally sends fans there.` : "Once page data appears, I will pick the strongest page to amplify."
+          },
+          {
+            title: "Turn geography into content",
+            body: topCountry ? `${topCountry.country || topCountry.name} is the strongest country signal. Feature that team, timezone, or fan angle in tomorrow's pick.` : "Country data is not available yet."
+          },
+          {
+            title: "Protect the 90/10 rule",
+            body: "Keep most posts as football discussion. Let website promotion ride inside useful schedules, prediction debates, and share cards."
+          }
+        ];
+      }
+      return [
+        {
+          title: change >= 0 ? "增长在动，今天值得加码" : "流量回落也有价值",
+          body: change >= 0
+            ? `过去 24 小时流量${signedPct(change)}。今天的精选内容应该继续导向最高意图页面。`
+            : `过去 24 小时流量下降 ${Math.abs(change)}%。建议用更强的足球争议点，把讨论导向热门页面。`
+        },
+        {
+          title: "把已经跑出来的页面继续放大",
+          body: bestPage ? `${bestPage.page} 当前最高，约 ${fmt(bestPage.views)} 次浏览。今天的文案可以自然引导用户去这个页面。` : "还没有页面数据；等 Cloudflare 同步后我会自动挑出最值得放大的页面。"
+        },
+        {
+          title: "把国家热度变成内容角度",
+          body: topCountry ? `${countryLabel(topCountry.country || topCountry.name)} 是当前最强地区信号。明天可以围绕这个国家、球队或时区做一条更贴近球迷的内容。` : "暂时没有国家数据；可以先用巴西、阿根廷、法国这类高讨论球队测试。"
+        },
+        {
+          title: "继续守住 90/10 内容纪律",
+          body: "大部分内容继续做足球讨论、预测争议和赛程价值；网站推广藏在有用内容里，这样更像球迷社区，而不是广告。"
+        }
+      ];
     }
 
     function render() {
-      const list = getFiltered();
-      renderSummary(list);
-      els.empty.style.display = list.length ? "none" : "block";
-      els.grid.innerHTML = "";
+      applyLanguage();
+      renderXOpportunities();
+      renderGrowth();
+      const ranked = getRanked();
+      renderLogic(ranked);
+      els.featured.innerHTML = "";
+      els.featured.style.display = ranked.length ? "grid" : "none";
+      els.empty.style.display = ranked.length ? "none" : "block";
+      if (!ranked.length) return;
 
-      for (const entry of list) {
-        const draft = entry.draft;
-        const used = Boolean(state.used[entry.id]);
-        const article = document.createElement("article");
-        article.className = used ? "used" : "";
+      state.offset = Math.min(state.offset, ranked.length - 1);
+      const entry = ranked[state.offset];
+      state.current = entry;
+      const draft = entry.draft;
+      const text = textWithUrl(draft);
+      const imagePath = draft.image ? draft.image.replace(/^\//, "") : "";
+      const imageName = imagePath ? imagePath.split("/").pop() : "";
+      const openClass = draft.platform === "facebook" ? "facebook" : draft.platform === "x" ? "x" : "";
+      const preview = `
+        <h3>中文参考</h3>
+        <p class="zh-copy">${zhText(draft)}</p>
+        <p class="hint">右侧保留英文原文，复制发布时使用英文；这里仅帮助你快速判断内容是否值得发。</p>
+      `;
 
-        const image = draft.image
-          ? `<img src="${draft.image.replace(/^\//, "")}" alt="${draft.team || draft.category} 分享图片">`
-          : `<span>${draft.platform === "discord" ? "讨论草稿" : "纯文字草稿"}</span>`;
-
-        const text = textWithUrl(draft);
-        const imagePath = draft.image ? draft.image.replace(/^\//, "") : "";
-        const imageName = imagePath ? imagePath.split("/").pop() : "";
-        const openLabel = draft.platform === "facebook" ? "打开 Facebook" : draft.platform === "x" ? "打开 X" : "打开网站";
-        const openClass = draft.platform === "facebook" ? "facebook" : draft.platform === "x" ? "x" : "";
-        const platformName = platformNames[draft.platform] || draft.platform;
-        const categoryName = categoryNames[draft.category] || draft.category;
-        const imageTools = draft.image ? `
-            <p class="image-note">分享图：${imageName}。平台不会从分享链接自动附图，请先复制或下载图片，再手动粘贴/上传。</p>
-            <div class="image-actions">
-              <button class="image-copy" type="button">复制图片</button>
-              <a class="action image-download" href="${imagePath}" download="${imageName}">下载图片</a>
-              <button class="image-path" type="button">复制图片路径</button>
-            </div>
-          ` : "";
-
-        article.innerHTML = `
-          <div class="preview">${image}</div>
-          <div class="card-body">
-            <div class="meta">
-              <span class="tag">${platformName}</span>
-              <span>${categoryName}</span>
-              ${draft.team ? `<span>${draft.team}</span>` : ""}
-            </div>
-            <textarea>${text}</textarea>
-            <div class="actions">
-              <button class="primary copy" type="button">复制文案</button>
-              <a class="action ${openClass}" target="_blank" rel="noopener"> ${openLabel}</a>
-              <button class="used-toggle" type="button" data-used="${used}">${used ? "已使用" : "标记已用"}</button>
-              <button class="copy-url" type="button">复制链接</button>
-            </div>
-            ${imageTools}
+      els.featured.innerHTML = `
+        <div class="preview">${preview}</div>
+        <div class="draft-body">
+          <div class="tags">
+            <span class="tag">${platformNames[draft.platform] || draft.platform}</span>
+            <span class="tag green">${contentType(draft)}</span>
+            ${draft.team ? `<span class="tag gold">${draft.team}</span>` : ""}
+            <span class="tag">${t("score")}: ${entry.score}</span>
           </div>
-        `;
+          <h2>${state.lang === "zh" ? "今日精选" : "Daily Pick"}</h2>
+          <p><strong>${t("reason")}:</strong> ${reason(entry)}</p>
+          <textarea>${text}</textarea>
+          <p>${draft.safety_note || (state.lang === "zh" ? "仅限足球讨论，发布前请人工审核。" : "Football-only discussion. Human review before posting.")}</p>
+          <div class="row-actions">
+            <button class="primary copy" type="button">${t("copyDraft")}</button>
+            <a class="button ${openClass} open" target="_blank" rel="noopener">${t("openPlatform")}</a>
+            <button class="success adopt" type="button">${t("adopt")}</button>
+            <button class="copy-url" type="button">${t("copyUrl")}</button>
+          </div>
+          ${imagePath ? `
+            <div class="row-actions">
+              <button class="copy-image" type="button">${t("copyImage")}</button>
+              <a class="button" href="${imagePath}" download="${imageName}">${t("download")}</a>
+            </div>
+          ` : ""}
+        </div>
+        ${imagePath ? `<div class="featured-image"><img src="${imagePath}" alt="${contentType(draft)} social image"></div>` : ""}
+      `;
 
-        const textarea = article.querySelector("textarea");
-        const open = article.querySelector("a.action");
+      const textarea = els.featured.querySelector("textarea");
+      const open = els.featured.querySelector(".open");
+      open.href = composeUrl(draft, textarea.value);
+      textarea.addEventListener("input", () => {
         open.href = composeUrl(draft, textarea.value);
-        textarea.addEventListener("input", () => {
-          open.href = composeUrl(draft, textarea.value);
-        });
-        article.querySelector(".copy").addEventListener("click", () => copyText(textarea.value));
-        article.querySelector(".copy-url").addEventListener("click", () => copyText(draft.url || "https://worldcup.bluet.cc"));
-        const copyImageButton = article.querySelector(".image-copy");
-        const copyImagePathButton = article.querySelector(".image-path");
-        if (copyImageButton) copyImageButton.addEventListener("click", () => copyImage(imagePath));
-        if (copyImagePathButton) copyImagePathButton.addEventListener("click", () => copyText(imagePath));
-        article.querySelector(".used-toggle").addEventListener("click", (event) => {
-          state.used[entry.id] = !state.used[entry.id];
-          saveUsed();
-          event.currentTarget.dataset.used = String(state.used[entry.id]);
-          render();
-        });
-        els.grid.appendChild(article);
-      }
+      });
+      els.featured.querySelector(".copy").addEventListener("click", () => copyText(textarea.value));
+      els.featured.querySelector(".copy-url").addEventListener("click", () => copyText(trackingUrl(draft)));
+      const copyImageButton = els.featured.querySelector(".copy-image");
+      if (copyImageButton) copyImageButton.addEventListener("click", () => copyImage(imagePath));
+      els.featured.querySelector(".adopt").addEventListener("click", () => adoptCurrent(textarea.value));
+    }
+
+    function adoptCurrent(text) {
+      if (!state.current) return;
+      const draft = state.current.draft;
+      const record = {
+        id: state.current.id,
+        status: "selected",
+        selectedDate: todayKey(),
+        selectedAt: new Date().toISOString(),
+        platform: draft.platform,
+        country: draft.team || "General",
+        team: draft.team || "",
+        category: draft.category,
+        contentType: categoryZh(draft.category),
+        text,
+        url: publicUrl(draft),
+        trackingUrl: trackingUrl(draft),
+        image: draft.image || "",
+        recommendationScore: state.current.score,
+        recommendationReason: reason(state.current),
+        impressions: 0,
+        likes: 0,
+        replies: 0,
+        shares: 0,
+        bookmarks: 0,
+        linkClicks: 0,
+        pageViewsBefore: null,
+        pageViewsAfter: null,
+        trafficLift: null
+      };
+      state.used[state.current.id] = true;
+      state.records = [record, ...state.records.filter((item) => item.id !== record.id)];
+      saveUsed();
+      state.offset = 0;
+      showToast(t("selected"));
+      render();
     }
 
     async function load() {
-      const groups = window.SOCIAL_DASHBOARD_DRAFTS
-        ? window.SOCIAL_DASHBOARD_DRAFTS
-        : await Promise.all(sources.map((src) => fetch(src).then((res) => res.json())));
+      const groups = window.SOCIAL_DASHBOARD_DRAFTS || [];
       state.drafts = groups.flat().map((draft, index) => ({ draft, id: idFor(draft, index) }));
       render();
     }
 
-    [els.search, els.platform, els.category, els.status].forEach((el) => el.addEventListener("input", render));
-    load().catch((error) => {
-      els.grid.innerHTML = "";
-      els.empty.style.display = "block";
-      els.empty.textContent = `草稿加载失败：${error.message}`;
+    [els.platform, els.category, els.search].forEach((el) => {
+      el.addEventListener("input", () => {
+        state.offset = 0;
+        render();
+      });
     });
+    els.next.addEventListener("click", () => {
+      const ranked = getRanked();
+      state.offset = ranked.length ? (state.offset + 1) % ranked.length : 0;
+      render();
+    });
+    els.language.addEventListener("click", () => {
+      state.lang = state.lang === "zh" ? "en" : "zh";
+      localStorage.setItem("wc-language", state.lang);
+      render();
+    });
+    load();
   </script>
 </body>
 </html>
