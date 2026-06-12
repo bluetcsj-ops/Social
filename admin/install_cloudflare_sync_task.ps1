@@ -1,6 +1,6 @@
 param(
   [string]$TaskName = "WorldCup2026CloudflareGrowthSync",
-  [string]$ProjectRoot = "J:\promotion helper",
+  [string]$ProjectRoot = "D:\Social-main",
   [string]$PythonExe = "python"
 )
 
@@ -40,7 +40,7 @@ if (-not $token -or -not $zone) {
 schtasks.exe /Create `
   /TN $TaskName `
   /SC HOURLY `
-  /MO 3 `
+  /MO 1 `
   /TR $runnerShortPath `
   /F | Out-Host
 
@@ -49,7 +49,7 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 Write-Host "Installed scheduled task: $TaskName"
-Write-Host "It will run every 3 hours and update admin\growth-data.js"
+Write-Host "It will run every hour and update admin\growth-data.js"
 Write-Host "Task action: $runnerShortPath"
 Write-Host "You can test it with:"
 Write-Host "schtasks.exe /Run /TN $TaskName"

@@ -67,6 +67,122 @@ def ranked(rows: list[dict], label_fn, value_fn, limit: int = 8) -> list[dict]:
     ]
 
 
+def status_code_summary(rows: list[dict]) -> dict:
+    buckets: dict[int, int] = {}
+    total = 0
+    for row in rows:
+        raw_status = (row.get("dimensions") or {}).get("edgeResponseStatus")
+        if raw_status is None:
+            continue
+        try:
+            status = int(raw_status)
+        except (TypeError, ValueError):
+            continue
+        count = int(row.get("count") or 0)
+        buckets[status] = buckets.get(status, 0) + count
+        total += count
+
+    ok = sum(count for status, count in buckets.items() if 200 <= status < 400)
+    not_found = buckets.get(404, 0)
+    server_errors = sum(count for status, count in buckets.items() if 500 <= status < 600)
+    client_errors = sum(count for status, count in buckets.items() if 400 <= status < 500)
+    error_requests = client_errors + server_errors
+    error_rate = round((error_requests / total) * 100, 2) if total else 0
+    not_found_rate = round((not_found / total) * 100, 2) if total else 0
+    server_error_rate = round((server_errors / total) * 100, 2) if total else 0
+    health_score = max(0, min(100, round(100 - error_rate * 3 - server_error_rate * 8 - not_found_rate)))
+
+    return {
+        "score": health_score,
+        "totalRequests": total,
+        "okRequests": ok,
+        "clientErrorRequests": client_errors,
+        "notFoundRequests": not_found,
+        "serverErrorRequests": server_errors,
+        "errorRequests": error_requests,
+        "errorRatePct": error_rate,
+        "notFoundRatePct": not_found_rate,
+        "serverErrorRatePct": server_error_rate,
+        "statusCodes": [
+            {"status": status, "requests": count}
+            for status, count in sorted(buckets.items(), key=lambda item: item[1], reverse=True)
+        ],
+    }
+
+
+def is_suspicious_path(path: str | None) -> bool:
+    if not path:
+        return False
+    clean = path.lower().split("?")[0]
+    suspicious_parts = (
+        "/.env",
+        ".env",
+        "/wp-",
+        "/wordpress",
+        "/phpmyadmin",
+        "/adminer",
+        "/vendor/",
+        "/node_modules/",
+        "/config/",
+        "/backup",
+        "/db",
+        "/shell",
+        "/cgi-bin/",
+        "config.php",
+        "wp-config",
+        "composer.json",
+        "package.json",
+        "server-status",
+    )
+    suspicious_extensions = (
+        ".bak",
+        ".old",
+        ".sql",
+        ".ini",
+        ".log",
+        ".git",
+        ".svn",
+    )
+    return any(part in clean for part in suspicious_parts) or any(clean.endswith(ext) for ext in suspicious_extensions)
+
+
+def error_path_summary(rows: list[dict], limit: int = 10) -> dict:
+    actionable: dict[str, int] = {}
+    suspicious: dict[str, int] = {}
+    actionable_total = 0
+    suspicious_total = 0
+
+    for row in rows:
+        dimensions = row.get("dimensions") or {}
+        path = dimensions.get("clientRequestPath") or "Unknown"
+        try:
+            status = int(dimensions.get("edgeResponseStatus"))
+        except (TypeError, ValueError):
+            continue
+        if status not in (404, 410):
+            continue
+        count = int(row.get("count") or 0)
+        if is_suspicious_path(path):
+            suspicious[path] = suspicious.get(path, 0) + count
+            suspicious_total += count
+        else:
+            actionable[path] = actionable.get(path, 0) + count
+            actionable_total += count
+
+    def top_items(source: dict[str, int]) -> list[dict]:
+        return [
+            {"path": path, "requests": count}
+            for path, count in sorted(source.items(), key=lambda item: item[1], reverse=True)[:limit]
+        ]
+
+    return {
+        "actionable404Requests": actionable_total,
+        "suspicious404Requests": suspicious_total,
+        "actionable404Paths": top_items(actionable),
+        "suspicious404Paths": top_items(suspicious),
+    }
+
+
 def page_name(path: str | None) -> str:
     if not path or path == "/":
         return "Homepage"
@@ -110,7 +226,7 @@ def is_content_page(path: str | None) -> bool:
         ".woff2",
         ".ttf",
     )
-    return not clean.startswith(ignored_prefixes) and not clean.endswith(ignored_suffixes)
+    return not clean.startswith(ignored_prefixes) and not clean.endswith(ignored_suffixes) and not is_suspicious_path(clean)
 
 
 def referrer_name(host: str | None) -> str:
@@ -167,7 +283,8 @@ def fetch_cloudflare_growth_data() -> dict:
     now = datetime.now(timezone.utc)
     start = now - timedelta(hours=24)
     previous_start = start - timedelta(hours=24)
-    week_start = now - timedelta(days=7)
+    # Cloudflare limits httpRequests1hGroups to ranges of 3 days or less.
+    recent_start = now - timedelta(hours=72)
 
     hourly_query = """
     query ZoneTraffic($zoneTag: string!, $start: Time!, $end: Time!) {
@@ -204,6 +321,20 @@ def fetch_cloudflare_growth_data() -> dict:
             dimensions { clientCountryName }
             count
           }
+          statuses: httpRequestsAdaptiveGroups(
+            limit: 1000,
+            filter: {datetime_geq: $start, datetime_lt: $end}
+          ) {
+            dimensions { edgeResponseStatus }
+            count
+          }
+          errorPaths: httpRequestsAdaptiveGroups(
+            limit: 1000,
+            filter: {datetime_geq: $start, datetime_lt: $end, edgeResponseStatus_in: [404, 410]}
+          ) {
+            dimensions { edgeResponseStatus clientRequestPath }
+            count
+          }
         }
       }
     }
@@ -211,12 +342,12 @@ def fetch_cloudflare_growth_data() -> dict:
 
     current = graphql(token, hourly_query, {"zoneTag": zone_id, "start": iso(start), "end": iso(now)})
     previous = graphql(token, hourly_query, {"zoneTag": zone_id, "start": iso(previous_start), "end": iso(start)})
-    weekly = graphql(token, hourly_query, {"zoneTag": zone_id, "start": iso(week_start), "end": iso(now)})
+    recent = graphql(token, hourly_query, {"zoneTag": zone_id, "start": iso(recent_start), "end": iso(now)})
     breakdown = graphql(token, breakdown_query, {"zoneTag": zone_id, "start": iso(start), "end": iso(now)})
 
     current_rows = first_zone(current, "httpRequests1hGroups")
     previous_rows = first_zone(previous, "httpRequests1hGroups")
-    weekly_rows = first_zone(weekly, "httpRequests1hGroups")
+    recent_rows = first_zone(recent, "httpRequests1hGroups")
     zones = breakdown.get("viewer", {}).get("zones", [])
     if not zones:
         raise RuntimeError("Cloudflare returned no breakdown data.")
@@ -241,6 +372,51 @@ def fetch_cloudflare_growth_data() -> dict:
         lambda row: (row.get("dimensions") or {}).get("clientCountryName"),
         lambda row: row.get("count"),
     )
+    health = status_code_summary(zone.get("statuses", []))
+    error_paths = error_path_summary(zone.get("errorPaths", []))
+    health.update(error_paths)
+    raw_total = health.get("totalRequests", 0)
+    raw_client_errors = health.get("clientErrorRequests", 0)
+    raw_error_requests = health.get("errorRequests", 0)
+    raw_not_found = health.get("notFoundRequests", 0)
+    suspicious_404 = health.get("suspicious404Requests", 0)
+    actionable_404 = health.get("actionable404Requests", 0)
+
+    health["rawTotalRequests"] = raw_total
+    health["rawClientErrorRequests"] = raw_client_errors
+    health["rawErrorRequests"] = raw_error_requests
+    health["rawNotFoundRequests"] = raw_not_found
+    health["totalRequests"] = max(0, raw_total - suspicious_404)
+    health["notFoundRequests"] = actionable_404
+    health["clientErrorRequests"] = max(0, raw_client_errors - suspicious_404)
+    health["errorRequests"] = health["clientErrorRequests"] + health.get("serverErrorRequests", 0)
+    visible_total = max(1, health.get("totalRequests", 0))
+    health["errorRatePct"] = round((health["errorRequests"] / visible_total) * 100, 2)
+    health["notFoundRatePct"] = round((health["notFoundRequests"] / visible_total) * 100, 2)
+    health["actionableErrorRatePct"] = health["errorRatePct"]
+    health["statusCodes"] = [
+        {
+            **item,
+            "requests": actionable_404 if item["status"] == 404 else item["requests"],
+        }
+        for item in health.get("statusCodes", [])
+        if item["status"] != 404 or actionable_404 > 0
+    ]
+    health["statusCodes"] = [
+        item for item in health["statusCodes"]
+        if item["status"] != 404 or item["requests"] > 0
+    ]
+    health["score"] = max(
+        0,
+        min(
+            100,
+            round(
+                100
+                - health["errorRatePct"] * 5
+                - health.get("serverErrorRatePct", 0) * 8
+            ),
+        ),
+    )
     referrers = [{"name": "Cloudflare 未提供 Referrer", "value": page_views}]
 
     return {
@@ -257,7 +433,7 @@ def fetch_cloudflare_growth_data() -> dict:
             "followersDelta": 0,
         },
         "hourlyUsers": hourly_user_series(current_rows),
-        "dailyUsers": daily_user_series(weekly_rows),
+        "dailyUsers": daily_user_series(recent_rows),
         "topPages": [
             {
                 "page": item["name"],
@@ -276,6 +452,7 @@ def fetch_cloudflare_growth_data() -> dict:
             {"source": item["name"], "sessions": item["value"]}
             for item in referrers
         ],
+        "health": health,
         "posts": [],
     }
 

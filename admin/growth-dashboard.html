@@ -145,6 +145,39 @@
       font-size: 42px;
     }
 
+    .timeline-panel {
+      min-height: 236px;
+    }
+
+    .line-chart {
+      width: 100%;
+      height: 180px;
+      display: block;
+      overflow: visible;
+    }
+
+    .line-chart .axis {
+      stroke: #d8e0e7;
+      stroke-width: 1;
+    }
+
+    .line-chart .curve {
+      fill: none;
+      stroke: var(--blue);
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .line-chart .area {
+      fill: rgba(23, 105, 170, 0.12);
+    }
+
+    .line-chart text {
+      font-size: 11px;
+      fill: var(--muted);
+    }
+
     .row {
       display: grid;
       grid-template-columns: minmax(110px, 1fr) minmax(80px, auto);
@@ -189,6 +222,85 @@
     .tag.green { background: #e8f5ef; color: #146346; }
     .tag.gold { background: #fff5d9; color: #7d5508; }
     .tag.red { background: #fae8e8; color: #8b2929; }
+
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .action-card {
+      border: 1px solid #edf1f4;
+      border-radius: 8px;
+      padding: 14px;
+      display: grid;
+      gap: 8px;
+      align-content: start;
+      min-height: 148px;
+      background: #fbfcfd;
+    }
+
+    .action-card strong {
+      font-size: 15px;
+    }
+
+    .action-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .action-list label {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 8px;
+      align-items: start;
+      color: var(--ink);
+      line-height: 1.45;
+    }
+
+    .action-list input {
+      margin-top: 3px;
+    }
+
+    .health-grid {
+      display: grid;
+      grid-template-columns: minmax(170px, 0.7fr) 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .health-score {
+      display: grid;
+      gap: 8px;
+      padding: 16px;
+      border: 1px solid #edf1f4;
+      border-radius: 8px;
+      background: #fbfcfd;
+    }
+
+    .health-score strong {
+      font-size: clamp(40px, 6vw, 64px);
+      line-height: 1;
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .status-item {
+      border: 1px solid #edf1f4;
+      border-radius: 8px;
+      padding: 12px;
+      background: #fbfcfd;
+      display: grid;
+      gap: 5px;
+    }
+
+    .status-item strong {
+      font-size: 22px;
+    }
 
     table {
       width: 100%;
@@ -237,6 +349,8 @@
       .span-3, .span-4, .span-5, .span-6, .span-7, .span-8 { grid-column: span 6; }
       .score { grid-template-columns: 1fr; }
       .score-ring { max-width: 220px; }
+      .action-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .health-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 720px) {
@@ -244,6 +358,8 @@
       .toolbar { justify-content: flex-start; }
       .grid { grid-template-columns: 1fr; }
       .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-12 { grid-column: 1; }
+      .action-grid { grid-template-columns: 1fr; }
+      .status-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       table { display: block; overflow-x: auto; }
     }
   </style>
@@ -257,6 +373,7 @@
     <div class="toolbar">
       <span class="tag" id="last-refresh">最新刷新：读取中</span>
       <a class="link-button" href="../social-dashboard.html">每日精选</a>
+      <button id="refresh-cloudflare" type="button">刷新并每小时自动</button>
       <button class="primary" id="copy-report" type="button">复制周报</button>
     </div>
   </header>
@@ -277,6 +394,14 @@
       <article class="panel span-3 metric"><p>浏览量</p><strong id="page-views">0</strong><p>网站需求信号。</p></article>
       <article class="panel span-3 metric"><p>回访用户</p><strong id="returning">0</strong><p>留存信号。</p></article>
       <article class="panel span-3 metric"><p>粉丝变化</p><strong id="followers">+0</strong><p>手动记录。</p></article>
+      <article class="panel span-12 timeline-panel">
+        <h2>每日累积用户人数</h2>
+        <div id="daily-cumulative-chart"></div>
+      </article>
+      <article class="panel span-12">
+        <h2>网站健康度</h2>
+        <div id="health-summary"></div>
+      </article>
     </section>
 
     <section class="grid">
@@ -302,6 +427,13 @@
       <article class="panel span-3">
         <h2>来源渠道</h2>
         <div id="referrers"></div>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="panel span-12">
+        <h2>维护与推广行动板</h2>
+        <div class="action-grid" id="growth-actions"></div>
       </article>
     </section>
 
@@ -379,6 +511,10 @@
 
     const $ = (selector) => document.querySelector(selector);
     const fmt = (value) => new Intl.NumberFormat("zh-CN").format(Number(value) || 0);
+    const refreshApiBase = window.location.protocol === "file:" ? "http://127.0.0.1:8787" : "";
+    const oneHourMs = 60 * 60 * 1000;
+    let autoRefreshTimer = null;
+    let autoRefreshEnabled = localStorage.getItem("wc-growth-auto-refresh") === "1";
     const countryNames = {
       NL: "荷兰",
       SG: "新加坡",
@@ -422,7 +558,11 @@
       if (!rawPath || rawPath === "/" || rawPage === "homepage") return true;
       const ignoredPrefixes = ["/assets/", "/cdn-cgi/", "/images/", "/social/images/", "/admin/", "/favicon"];
       const ignoredSuffixes = [".js", ".css", ".png", ".jpg", ".jpeg", ".webp", ".svg", ".ico", ".json", ".map", ".woff", ".woff2", ".ttf"];
+      const suspiciousParts = ["/.env", ".env", "/wp-", "/wordpress", "/phpmyadmin", "/adminer", "/vendor/", "/node_modules/", "/config/", "/backup", "/db", "/shell", "/cgi-bin/", "config.php", "wp-config", "composer.json", "package.json", "server-status"];
+      const suspiciousSuffixes = [".bak", ".old", ".sql", ".ini", ".log", ".git", ".svn"];
       return !ignoredPrefixes.some((prefix) => rawPath.startsWith(prefix))
+        && !suspiciousParts.some((part) => rawPath.includes(part))
+        && !suspiciousSuffixes.some((suffix) => rawPath.endsWith(suffix))
         && !ignoredSuffixes.some((suffix) => rawPath.endsWith(suffix));
     }
 
@@ -513,6 +653,158 @@
       const engagement = Math.max(0, Math.min(45, data.traffic.engagementGrowthPct + 18));
       const retention = Math.min(20, Math.round((data.traffic.returningVisitors / Math.max(1, data.traffic.users)) * 100));
       return Math.min(100, traffic + engagement + retention);
+    }
+
+    function dailyCumulativeUsers() {
+      const daily = Array.isArray(data.dailyUsers) ? data.dailyUsers : [];
+      if (daily.length) {
+        let cumulative = 0;
+        return daily.map((item) => {
+          cumulative += Number(item.users) || 0;
+          return {
+            time: item.date || item.time || item.label || "",
+            users: cumulative
+          };
+        }).slice(-7);
+      }
+
+      const users = Number(data.traffic?.users) || 0;
+      const growth = Number(data.traffic?.trafficGrowthPct) || 0;
+      const start = Math.max(0, Math.round(users / ((1 + growth / 100) || 1)));
+      const now = new Date();
+      return Array.from({ length: 7 }, (_, index) => {
+        const ratio = index / 6;
+        const smooth = ratio * ratio * (3 - 2 * ratio);
+        const value = Math.round(start + (users - start) * smooth);
+        const date = new Date(now.getTime() - (6 - index) * 24 * 60 * 60 * 1000);
+        return { time: `${date.getMonth() + 1}/${date.getDate()}`, users: value };
+      });
+    }
+
+    function lineChart(points) {
+      if (!points.length) return `<p>暂无用户曲线数据。</p>`;
+      const width = 900;
+      const height = 180;
+      const padX = 34;
+      const padTop = 22;
+      const padBottom = 34;
+      const max = Math.max(...points.map((item) => item.users), 1);
+      const min = Math.min(...points.map((item) => item.users), 0);
+      const span = Math.max(1, max - min);
+      const coords = points.map((item, index) => {
+        const x = padX + index * ((width - padX * 2) / Math.max(1, points.length - 1));
+        const y = padTop + (1 - (item.users - min) / span) * (height - padTop - padBottom);
+        return { ...item, x, y };
+      });
+      const path = coords.map((item, index) => `${index ? "L" : "M"}${item.x.toFixed(1)},${item.y.toFixed(1)}`).join(" ");
+      const area = `${path} L${coords[coords.length - 1].x.toFixed(1)},${height - padBottom} L${coords[0].x.toFixed(1)},${height - padBottom} Z`;
+      return `
+        <svg class="line-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="每日累积用户人数">
+          <line class="axis" x1="${padX}" y1="${height - padBottom}" x2="${width - padX}" y2="${height - padBottom}"></line>
+          <path class="area" d="${area}"></path>
+          <path class="curve" d="${path}"></path>
+          ${coords.map((item, index) => index % 2 === 0 || index === coords.length - 1 ? `<text x="${item.x}" y="${height - 10}" text-anchor="middle">${item.time}</text>` : "").join("")}
+          <text x="${padX}" y="14">每日累积用户人数</text>
+          <text x="${width - padX}" y="14" text-anchor="end">${fmt(max)}</text>
+        </svg>
+      `;
+    }
+
+    function healthSnapshot() {
+      const health = data.health || {};
+      const statusCodes = Array.isArray(health.statusCodes) ? health.statusCodes : [];
+      const total = Number(health.totalRequests) || Number(data.traffic?.pageViews) || 0;
+      const notFound = Number(health.notFoundRequests) || 0;
+      const actionable404 = Number(health.actionable404Requests) || 0;
+      const serverErrors = Number(health.serverErrorRequests) || 0;
+      const clientErrors = Number(health.clientErrorRequests) || notFound;
+      const ok = Number(health.okRequests) || Math.max(0, total - clientErrors - serverErrors);
+      const errorRate = Number(health.errorRatePct) || (total ? Math.round(((clientErrors + serverErrors) / total) * 10000) / 100 : 0);
+      const actionableErrorRate = Number(health.actionableErrorRatePct) || (total ? Math.round(((actionable404 + serverErrors) / total) * 10000) / 100 : 0);
+      const score = Number.isFinite(Number(health.score)) ? Number(health.score) : Math.max(0, Math.min(100, Math.round(100 - errorRate * 3)));
+      const actionable404Paths = Array.isArray(health.actionable404Paths) ? health.actionable404Paths : [];
+      return { score, total, ok, clientErrors, notFound, actionable404, serverErrors, errorRate, actionableErrorRate, statusCodes, actionable404Paths };
+    }
+
+    function renderHealthSummary() {
+      const health = healthSnapshot();
+      const statusRows = health.statusCodes.length
+        ? health.statusCodes.slice(0, 6).map((item) => `<div class="row"><div>HTTP ${item.status}</div><strong>${fmt(item.requests)}</strong></div>`).join("")
+        : `<p>刷新 Cloudflare 后会显示真实状态码分布。</p>`;
+      const actionableRows = health.actionable404Paths.length
+        ? health.actionable404Paths.slice(0, 5).map((item) => `<div class="row"><div>${item.path}</div><strong>${fmt(item.requests)}</strong></div>`).join("")
+        : `<p>暂无明显真实死链。</p>`;
+      const verdict = health.serverErrors > 0
+        ? "有 5xx 错误，优先检查服务器或 Worker。"
+        : health.actionable404 > 0
+          ? "有真实 404，优先修复失效链接或补跳转。"
+          : "状态码健康，继续保持内容和速度优化。";
+      $("#health-summary").innerHTML = `
+        <div class="health-grid">
+          <div class="health-score">
+            <p>健康分</p>
+            <strong>${fmt(health.score)}</strong>
+            <p>${verdict}</p>
+          </div>
+          <div>
+            <div class="status-grid">
+              <div class="status-item"><p>总请求</p><strong>${fmt(health.total)}</strong></div>
+              <div class="status-item"><p>2xx/3xx</p><strong>${fmt(health.ok)}</strong></div>
+              <div class="status-item"><p>404</p><strong>${fmt(health.notFound)}</strong></div>
+              <div class="status-item"><p>5xx</p><strong>${fmt(health.serverErrors)}</strong></div>
+            </div>
+            <div class="row"><div>错误率</div><strong>${health.errorRate}%</strong></div>
+            <div class="row"><div>真实待处理错误率</div><strong>${health.actionableErrorRate}%</strong></div>
+            ${statusRows}
+          </div>
+        </div>
+        <article class="panel">
+          <h3>真实待处理 404</h3>
+          ${actionableRows}
+        </article>
+      `;
+    }
+
+    function buildGrowthActions() {
+      const pages = contentPages();
+      const bestPage = [...pages].sort((a, b) => b.views - a.views)[0] || { page: "Homepage", views: 0 };
+      const returningRate = Math.min(100, Math.round((Number(data.traffic.returningVisitors) || 0) / Math.max(1, Number(data.traffic.pageViews) || 0) * 100));
+      const sourceLabel = (data.referrers || [])[0]?.source || "Direct";
+      const trafficGrowth = Number(data.traffic.trafficGrowthPct) || 0;
+      const users = Number(data.traffic.users) || 0;
+      const lowTraffic = users < 100;
+      const health = healthSnapshot();
+
+      return [
+        {
+          title: "健康与性能",
+          tag: `${health.score} 健康分`,
+          text: health.serverErrors > 0
+            ? `过去 24 小时有 ${fmt(health.serverErrors)} 次 5xx，先排查服务端错误。`
+            : health.actionable404 > 0
+              ? `过去 24 小时有 ${fmt(health.actionable404)} 次真实 404，先修死链或做跳转。`
+              : `状态码稳定，访问比前 24 小时${trafficGrowth ? `增长 ${trafficGrowth}%` : "持平"}。`,
+          checks: ["修复真实 404", "确认没有 5xx", "压缩新增图片"]
+        },
+        {
+          title: "流量来源",
+          tag: sourceLabel,
+          text: `当前主要来源是 ${sourceLabel}。下一步要把自然搜索和社交引荐拆开观察。`,
+          checks: ["提交 sitemap", "补页面标题与描述", "记录每次外部分享来源"]
+        },
+        {
+          title: "用户行为",
+          tag: bestPage.page,
+          text: `${bestPage.page} 是当前最强页面，围绕它做二次内容和内链。`,
+          checks: ["给热门页加相关入口", "找退出点补 CTA", "复用热门主题发帖"]
+        },
+        {
+          title: "转化与留存",
+          tag: `${returningRate}% 回访信号`,
+          text: lowTraffic ? "新站阶段先追踪采用、点击和回访，不急着投广告。" : "可以开始做轻量 A/B 测试和邮件/收藏召回。",
+          checks: ["记录按钮点击", "每周复盘精选内容", "建立可回访入口"]
+        }
+      ];
     }
 
     function barRows(container, items, labelKey, valueKey) {
@@ -612,6 +904,8 @@
       $("#traffic-growth").textContent = trendText("访问", data.traffic.trafficGrowthPct);
       $("#engagement-growth").textContent = signedPct(data.traffic.engagementGrowthPct);
       $("#followers").textContent = `+${data.traffic.followersDelta}`;
+      $("#daily-cumulative-chart").innerHTML = lineChart(dailyCumulativeUsers());
+      renderHealthSummary();
 
       $("#tomorrow").innerHTML = `
         <div class="tagline">
@@ -635,6 +929,18 @@
       barRows($("#top-pages"), pages.map((item) => ({ ...item, improvement: pageMeaning(item) })), "page", "views");
       barRows($("#countries"), (data.countries || []).map((item) => ({ ...item, country: countryLabel(item.country) })), "country", "sessions");
       barRows($("#referrers"), data.referrers, "source", "sessions");
+      $("#growth-actions").innerHTML = buildGrowthActions().map((item) => `
+        <div class="action-card">
+          <div class="tagline">
+            <span class="tag green">${item.tag}</span>
+          </div>
+          <strong>${item.title}</strong>
+          <p>${item.text}</p>
+          <div class="action-list">
+            ${item.checks.map((check) => `<label><input type="checkbox"> <span>${check}</span></label>`).join("")}
+          </div>
+        </div>
+      `).join("");
 
       $("#post-table").innerHTML = [...posts].sort((a, b) => postScore(b) - postScore(a)).map((post) => `
         <tr>
@@ -736,6 +1042,71 @@
       window.setTimeout(() => $("#copy-report").textContent = "复制周报", 1200);
     });
 
+    function updateRefreshButton(isRefreshing = false) {
+      const button = $("#refresh-cloudflare");
+      if (isRefreshing) {
+        button.disabled = true;
+        button.textContent = "刷新中";
+        return;
+      }
+      button.disabled = false;
+      button.textContent = autoRefreshEnabled ? "每小时自动刷新中" : "刷新并每小时自动";
+    }
+
+    async function refreshCloudflareData() {
+      updateRefreshButton(true);
+      try {
+        const response = await fetch(`${refreshApiBase}/api/refresh-cloudflare`, { method: "POST" });
+        const result = await response.json();
+        if (!response.ok || !result.ok) throw new Error(result.error || "刷新失败");
+        localStorage.removeItem("wc-growth-data");
+        localStorage.removeItem("wc-growth-data-manual");
+        importedData = null;
+        data = result.data;
+        window.GROWTH_DASHBOARD_DATA = result.data;
+        $("#data-input").value = "";
+        render();
+        updateRefreshButton(false);
+      } catch (error) {
+        const message = String(error.message || error);
+        const quotaTip = message.includes("cannot request a time range wider than 3d")
+          ? "Cloudflare 小时级接口最多只能查 3 天。我已经把脚本改成最近 72 小时，请重启本地后台后再试。"
+          : message;
+        alert(`刷新失败：${quotaTip}\n\n请确认你是通过 admin\\open_growth_dashboard.cmd 打开的本地后台，并且已设置 Cloudflare 环境变量。`);
+        updateRefreshButton(false);
+        throw error;
+      } finally {
+        updateRefreshButton(false);
+      }
+    }
+
+    function startAutoRefresh() {
+      window.clearInterval(autoRefreshTimer);
+      autoRefreshTimer = window.setInterval(() => {
+        refreshCloudflareData().catch(() => {});
+      }, oneHourMs);
+      autoRefreshEnabled = true;
+      localStorage.setItem("wc-growth-auto-refresh", "1");
+      updateRefreshButton(false);
+    }
+
+    function stopAutoRefresh() {
+      window.clearInterval(autoRefreshTimer);
+      autoRefreshTimer = null;
+      autoRefreshEnabled = false;
+      localStorage.removeItem("wc-growth-auto-refresh");
+      updateRefreshButton(false);
+    }
+
+    $("#refresh-cloudflare").addEventListener("click", async () => {
+      if (autoRefreshEnabled) {
+        stopAutoRefresh();
+        return;
+      }
+      startAutoRefresh();
+      await refreshCloudflareData().catch(() => stopAutoRefresh());
+    });
+
     document.addEventListener("input", (event) => {
       const target = event.target;
       if (!target.matches("#selected-table input")) return;
@@ -759,6 +1130,8 @@
       render();
     });
 
+    if (autoRefreshEnabled) startAutoRefresh();
+    updateRefreshButton(false);
     render();
   </script>
 </body>
